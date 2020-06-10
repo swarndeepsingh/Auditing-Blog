@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>App_SeqPrem_ReportCount</Name>
+    <LastWriteTime>2016-09-07T20:54:07.8113079Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+    <Salt>BBOkKad+</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6SRufhuhpEGnp+o2NqJrhgAAAAACAAAAAAADZgAAwAAAABAAAAABtHn5KakD/fSXTeLxFe93AAAAAASAAACgAAAAEAAAAH7OruB87KHXDCcI4+vQen4oAAAAFgUn6FC6QjhggXM+t7Ir888cB5EcoSgmy70MCNS7Aihw5adhPTCynhQAAADG5sztGWjOUTd0Z3nlbyWwmLWvAw==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>App_SeqPrem_Package_Prod.dtsx</Name>
+      <LastWriteTime>2016-09-07T20:54:07.7702949Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>2LjSepLw</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6SRufhuhpEGnp+o2NqJrhgAAAAACAAAAAAADZgAAwAAAABAAAABAhdJbENSM1VNGnWaM/XJHAAAAAASAAACgAAAAEAAAAOld4jhyqwlrwFqthGrg0E8oAAAA/6+RJwmvoo44L7+8eR476yIBr+QYZ2lJAI1BmL3Ko95wrJkU+tAjExQAAACcMBsnsgHTc5NLuf6UsHcw9yUN4w==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>App_SeqPrem_Package_UAT.dtsx</Name>
+      <LastWriteTime>2016-09-07T20:53:45.0237039Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>iDDZEOt+</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6SRufhuhpEGnp+o2NqJrhgAAAAACAAAAAAADZgAAwAAAABAAAAA7r2TCPjIObUjuiRom0p5/AAAAAASAAACgAAAAEAAAAFwgkA3oDVvimq9+fIYlQaAoAAAA7dVClxVy3xFtvFn1iI+rMhxnl4qHSlTh6R+Nm56LJSkO3pr7k1gtERQAAAA/dK1cnujm0tOPSxzch0+HWLmY3w==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>App_SeqPrem_Package_ProdSim.dtsx</Name>
+      <LastWriteTime>2016-09-07T20:52:36.1072164Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>643A08D5</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6SRufhuhpEGnp+o2NqJrhgAAAAACAAAAAAADZgAAwAAAABAAAAD4HKihv7WID3fyZOMpPK6oAAAAAASAAACgAAAAEAAAAEUBAe6oP6OqLXf0PpLgAzcoAAAABc0DDwylNilp4l2SZJXbkH0w+/heVAPb4Y7HnpA28By/f1rrrJejEhQAAAA/khSmA0CGBlAJNWoBmwEpdrScUA==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

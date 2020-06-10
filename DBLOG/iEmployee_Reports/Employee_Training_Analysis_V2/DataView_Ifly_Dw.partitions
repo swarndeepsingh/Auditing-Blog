@@ -1,0 +1,45 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="6466e3e9-b11e-47b9-961d-ba2b2fc1cff3" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DataView_Ifly_Dw</ID>
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>FACT TRAININGNOTOFFERED</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="60617ec0-4729-4bc0-84b1-a8bd2c4d29f8">
+          <ID>FACT TRAININGNOTOFFERED</ID>
+          <Name>FACT TRAININGNOTOFFERED</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="53e68177-9aa7-42d2-9a1e-48fa7b2668b0">
+            <DataSourceViewID>DataView_Ifly_Dw</DataSourceViewID>
+            <TableID>dbo_FACT_TRAININGNOTOFFERED</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>FACT TRAININGOFFERED</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="899077db-925e-41e3-bfec-9851175ceb7e">
+          <ID>FACT TRAININGOFFERED</ID>
+          <Name>FACT TRAININGOFFERED</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="a226dc26-7a39-4fda-97f6-8e04ad38a6e4">
+            <DataSourceViewID>DataView_Ifly_Dw</DataSourceViewID>
+            <TableID>dbo_FACT_TRAININGOFFERED</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+</Cube>

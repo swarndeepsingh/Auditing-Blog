@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "WaitTypes", "WaitTypes.rptproj", "{B644560F-1E61-4B58-AB89-0F385DE1FA1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.Debug|Default.ActiveCfg = Debug
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.Debug|Default.Build.0 = Debug
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.Debug|Default.Deploy.0 = Debug
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.DebugLocal|Default.Build.0 = DebugLocal
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.Release|Default.ActiveCfg = Release
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.Release|Default.Build.0 = Release
+		{B644560F-1E61-4B58-AB89-0F385DE1FA1C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

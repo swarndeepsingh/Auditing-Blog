@@ -1,0 +1,20 @@
+CREATE TABLE [DBLog].[bits_transfer_job] (
+    [Transfer_ID]       INT            NOT NULL,
+    [BitsJobID]         VARCHAR (256)  NOT NULL,
+    [JobStatus]         VARCHAR (50)   NULL,
+    [OwnerAccount]      VARCHAR (256)  NULL,
+    [HostName]          VARCHAR (256)  NULL,
+    [ErrorCount]        INT            NULL,
+    [ErrorContext]      VARCHAR (1024) NULL,
+    [ErrorCondition]    VARCHAR (2048) NULL,
+    [BytesTotal]        BIGINT         NULL,
+    [BytesTransferred]  BIGINT         NULL,
+    [TransferSpeed]     AS             ([bytestransferred]/case when datediff(second,[starttime],[laststatustime])=(0) then (1) else datediff(second,[starttime],[laststatustime]) end),
+    [TransferSpeedGBpH] AS             ((((((([bytestransferred]/case when datediff(second,[starttime],[laststatustime])=(0) then (1) else datediff(second,[starttime],[laststatustime]) end)*(1.00000))/(1024))/(1024))/(1024))*(60))*(60)),
+    [Files]             INT            NULL,
+    [FilesTransferred]  INT            NULL,
+    [StartTime]         DATETIME       NULL,
+    [TransferredTime]   DATETIME       NULL,
+    [CompletedTime]     DATETIME       NULL,
+    [LastStatusTime]    DATETIME       NOT NULL
+);

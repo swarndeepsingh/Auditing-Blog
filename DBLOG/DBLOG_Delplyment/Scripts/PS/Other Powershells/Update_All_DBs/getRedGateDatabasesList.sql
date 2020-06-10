@@ -1,0 +1,1 @@
+select distinct @@servername [ServerName], DBName from dblog.dblog.backup_info where backuptoolid = 'RGT' and [enabled] = 1

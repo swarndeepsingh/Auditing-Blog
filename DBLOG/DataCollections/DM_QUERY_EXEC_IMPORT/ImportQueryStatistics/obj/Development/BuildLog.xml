@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>ImportQueryStatistics</Name>
+    <LastWriteTime>2017-02-09T21:21:18.376367Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+    <Salt>nhfIMUGd</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX8uDt5pV00ya9owokpswpgAAAAACAAAAAAADZgAAwAAAABAAAABu42Xh7fv0go6GFeagESfAAAAAAASAAACgAAAAEAAAAEstnizxQrZZ4TizSEcIZtYoAAAArtSBk8b/OyEopJiAe2xHNRzE8t8d4JICk5NpglQ+ZLEPAWjeIxaDYRQAAAC20z/nmGX3h2iUVPdhFmy+dMeuTw==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>ImportExecQueries.dtsx</Name>
+      <LastWriteTime>2017-02-27T15:14:58.4371054Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>7P0ayVlr</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX8uDt5pV00ya9owokpswpgAAAAACAAAAAAADZgAAwAAAABAAAAB77IxcIqkukp1Jjrf/vhifAAAAAASAAACgAAAAEAAAAPkb7TGX+O2EIamVZmYsHdQoAAAA1yHqvGKx9KZQLd3xY+924iq6CYNuAZXIRi8eAjbrzXbTweolu6R6QhQAAAB3MimH5Qh8E40KHpuLMMYfXpVInA==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

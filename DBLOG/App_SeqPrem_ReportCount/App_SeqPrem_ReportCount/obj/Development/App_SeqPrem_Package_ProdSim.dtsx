@@ -1,0 +1,1801 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/29/2016 4:55:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBLOG"
+  DTS:CreatorName="AN3PROD\ddavis"
+  DTS:DTSID="{7BA84A56-5EAA-452D-8CD9-DEA22EDF76ED}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="App_SeqPrem_Package_ProdSim"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="68"
+  DTS:VersionGUID="{19457928-3CBA-4E82-89D8-781192F8BA1C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AN3PSSQL03]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A7EA6B54-6ADB-4F4E-83EA-FED1793B114A}"
+      DTS:ObjectName="AN3PSSQL03">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.171.161;User ID=dp_user;Initial Catalog=Reports;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="KpnsaJ2t0g=="
+            IV="pRSsUdIBrX4=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+            <CipherData>
+              <CipherValue>pRSsUdIBrX7rUjE0HQ2w04WbVv9WdYGeGyQzd6hPLNy7zZ6dBHcYc5mdax7VqhkoDDTf0NfMShOmqoRNDx2U761bsIpkMY42ZRXss27z+TXXwtskXUnI6rtYR+xZOfQTLjeKxYxot7Suf0JDd6RVP26GjYlyYPxN6xs2Hs8evjm/rGxQ95LkvQ==</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AppCount]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{A2D13B49-F6B0-4452-8209-C86568DCAD8A}"
+      DTS:ObjectName="AppCount">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Dsn=AppCount;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[App_PremSeqFileConnection]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{BDDF131C-84F9-41A5-A81C-AF93774810D4}"
+      DTS:ObjectName="App_PremSeqFileConnection">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::RptFilePath] + @[User::RptFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0027__x0027_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="F:\DBLOG\App_SeqPremRpt\App_PremSeq_RptCnt20160907.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Environment"
+              DTS:DTSID="{29F01604-E563-4C18-B8D2-26D2A678A945}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="133"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ReportDate"
+              DTS:DTSID="{46D97000-37A0-44E3-8EB4-6F975B1BBEAE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RptDateCount"
+              DTS:DTSID="{4348047C-8D38-4FB6-B5A4-825037436E7D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="64"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TransType"
+              DTS:DTSID="{855160C1-7FF3-438A-899C-DF3D8D1EE737}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PSSQL02]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0308A651-5686-43D8-B342-FFCE2BF039AC}"
+      DTS:ObjectName="PSSQL02">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.1.20.21;User ID=dp_user;Initial Catalog=ReportDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="Hfs3acg8Mg=="
+            IV="2kQTinWqjf4=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+            <CipherData>
+              <CipherValue>2kQTinWqjf7UePHDKUgAUyPRqeu2l7yAy+8mOxqYql9vfa77y675TqW1CTbWQJus7Alu7CLr+X+BXvO0veFisrsYNFcSYH65EvgniZMmkpBWv2G6R3jQqNnMNRZF83Lcz5Cc+hrxETTPvmh5z3uwovg+XSyXvXGkMOILg6yeaxv72hhG7MjVCQ==</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{66D4CA82-B87D-4CA8-BD8E-3768F0C705D7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BaseFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">App_PremSeq_RptCnt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9741E4C0-6FE0-4F50-B8A2-AD5C696A2A3B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileExtention">
+      <DTS:VariableValue
+        DTS:DataType="8">.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1382CEC3-0896-4F82-89B0-0FF1276732B8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::RptFilePath] +  @[User::RptFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileToMove">
+      <DTS:VariableValue
+        DTS:DataType="8">F:\DBLOG\App_SeqPremRpt\App_PremSeq_RptCnt20160907.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3D8B096F-E2E1-421C-9655-1DC5130EF7AE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessedFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">F:\DBLOG\App_SeqPremRpt\Processed\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4772AB12-3A37-4EE0-B4D0-96242EDD0C6E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::BaseFileName] +  (DT_WSTR,4)YEAR( @[User::RunDate] )&#xA;    + RIGHT(&quot;0&quot; + (DT_WSTR,2)MONTH(@[User::RunDate]), 2)&#xA;    + RIGHT(&quot;0&quot; + (DT_WSTR,2)DAY(@[User::RunDate]), 2) + @[User::FileExtention]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RptFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">App_PremSeq_RptCnt20160907.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{304AB8A5-9BDE-4177-8FDE-DDEB8D16761D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RptFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">F:\DBLOG\App_SeqPremRpt\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AD0BE78C-5802-4526-A1A7-12BD95F5ECAC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RunDate">
+      <DTS:VariableValue
+        DTS:DataType="7">9/7/2016 4:54:10 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8758D11D-2AF1-49C4-A899-DBE865A44F4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B90578A4-4314-4199-A8D5-918BF8B50640}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="winscpVar">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy File to Smart Monitor"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{210C9674-2CF8-430E-A516-5548B8A40A23}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy File to Smart Monitor"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:LoggingMode="1" />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">@[User::winscpVar]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files (x86)\WinSCP\WinSCP.com"
+          FailTaskIfReturnCodeIsNotSuccessValue="False"
+          WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Report Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9FBB1763-7754-4918-96B8-B3A98B719E3B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Report Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Report Data\AN4 Appl Count SP"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="AN4 Appl Count SP"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">exec [Reports].[DBA_App_SeqPrem_RptRecordCount]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Report Data\AN4 Appl Count SP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AN3PSSQL03]"
+                  connectionManagerRefId="Package.ConnectionManagers[AN3PSSQL03]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[Environment]"
+                      length="3"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[Environment]"
+                      name="Environment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[ReportDate]"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]"
+                      name="ReportDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[TransType]"
+                      length="64"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[TransType]"
+                      name="TransType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[RptDateCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[RptDateCount]"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[RptDateCount]"
+                      name="RptDateCount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Environment" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[ReportDate]"
+                      dataType="dbDate"
+                      name="ReportDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="TransType" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[RptDateCount]"
+                      dataType="i4"
+                      name="RptDateCount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[Environment]"
+                      name="Environment" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ReportDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ReportDate]"
+                      name="ReportDate" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[TransType]"
+                      name="TransType" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[RptDateCount]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[RptDateCount]"
+                      name="RptDateCount" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Report Data\Copy Data To MySQL"
+              componentClassID="Attunity.SSISODBCDst"
+              contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;2"
+              description="ODBC Destination"
+              name="Copy Data To MySQL"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                  expressionType="Notify"
+                  name="InsertMethod"
+                  typeConverter="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.String"
+                  description="Destination table"
+                  expressionType="Notify"
+                  name="TableName">`AppCountReportAN_PS`</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows inserted per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows inserted under the same transaction."
+                  expressionType="Notify"
+                  name="TransactionSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Report Data\Copy Data To MySQL.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AppCount]"
+                  connectionManagerRefId="Package.ConnectionManagers[AppCount]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ODBC Destination Input"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].Columns[Environment]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Environment"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[Environment]"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[Environment]" />
+                    <inputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].Columns[ReportDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ReportDate"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[ReportDate]"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[ReportDate]" />
+                    <inputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].Columns[TransType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="TransType"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[TransType]"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[TransType]" />
+                    <inputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].Columns[RptDateCount]"
+                      cachedDataType="i4"
+                      cachedName="RptDateCount"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[Count]"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[RptDateCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Environment" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbDate"
+                      name="ReportDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="TransType" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[Count]"
+                      dataType="i4"
+                      name="Count" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Destination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ID]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[Environment]"
+                      length="50"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[Environment]"
+                      name="Environment" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ReportDate]"
+                      dataType="dbDate"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[ReportDate]"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ReportDate]"
+                      name="ReportDate" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[TransType]"
+                      length="100"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[TransType]"
+                      name="TransType" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[Count]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input].ExternalColumns[Count]"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[Count]"
+                      name="Count" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Copy Data To MySQL.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Report Data\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Get Report Data\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Report Data\Data Conversion.Inputs[Data Conversion Input].Columns[ReportDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ReportDate"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Get Report Data\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ReportDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ReportDate]"
+                      name="Copy of ReportDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Get Report Data\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Report Data\Data Conversion 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Get Report Data\Data Conversion 1.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Report Data\Data Conversion 1.Inputs[Data Conversion Input].Columns[ReportDate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="ReportDate"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Get Report Data\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of ReportDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of ReportDate]"
+                      name="Copy of ReportDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Get Report Data\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Report Data\Get ANW Appl Count SP"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get ANW Appl Count SP"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">exec [dbo].[DBA_App_SeqPrem_RptRecordCount]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Report Data\Get ANW Appl Count SP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PSSQL02]"
+                  connectionManagerRefId="Package.ConnectionManagers[PSSQL02]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[Environment]"
+                      length="3"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[Environment]"
+                      name="Environment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[ReportDate]"
+                      length="10"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[ReportDate]"
+                      name="ReportDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[TransType]"
+                      length="18"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[TransType]"
+                      name="TransType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[RptDateCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[RptDateCount]"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[RptDateCount]"
+                      name="RptDateCount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Environment" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[ReportDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="ReportDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="TransType" />
+                    <externalMetadataColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].ExternalColumns[RptDateCount]"
+                      dataType="i4"
+                      name="RptDateCount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[Environment]"
+                      name="Environment" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ReportDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ReportDate]"
+                      name="ReportDate" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[TransType]"
+                      name="TransType" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[RptDateCount]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[RptDateCount]"
+                      name="RptDateCount" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Report Data\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Get Report Data\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 3].Columns[Environment]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Environment"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[Environment]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[Environment]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 3].Columns[TransType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="TransType"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[TransType]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[TransType]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 3].Columns[RptDateCount]"
+                      cachedDataType="i4"
+                      cachedName="RptDateCount"
+                      lineageId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output].Columns[RptDateCount]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[RptDateCount]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 3].Columns[Copy of ReportDate]"
+                      cachedDataType="dbDate"
+                      cachedName="Copy of ReportDate"
+                      lineageId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of ReportDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[ReportDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Get Report Data\Union All.Inputs[Union All Input 1]"
+                  hasSideEffects="true"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 1].Columns[Environment]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Environment"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[Environment]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[Environment]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 1].Columns[TransType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="TransType"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[TransType]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[TransType]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 1].Columns[RptDateCount]"
+                      cachedDataType="i4"
+                      cachedName="RptDateCount"
+                      lineageId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output].Columns[RptDateCount]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[RptDateCount]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Report Data\Union All.Inputs[Union All Input 1].Columns[Copy of ReportDate]"
+                      cachedDataType="dbDate"
+                      cachedName="Copy of ReportDate"
+                      lineageId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ReportDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[ReportDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Get Report Data\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Report Data\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[Environment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[Environment]"
+                      name="Environment" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[ReportDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[ReportDate]"
+                      name="ReportDate" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[TransType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[TransType]"
+                      name="TransType" />
+                    <outputColumn
+                      refId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[RptDateCount]"
+                      dataType="i4"
+                      lineageId="Package\Get Report Data\Union All.Outputs[Union All Output 1].Columns[RptDateCount]"
+                      name="RptDateCount" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Report Data.Paths[Data Conversion Output]"
+              endId="Package\Get Report Data\Union All.Inputs[Union All Input 3]"
+              name="Data Conversion Output"
+              startId="Package\Get Report Data\Data Conversion 1.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Get Report Data.Paths[Data Conversion Output1]"
+              endId="Package\Get Report Data\Union All.Inputs[Union All Input 1]"
+              name="Data Conversion Output"
+              startId="Package\Get Report Data\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Get Report Data.Paths[OLE DB Source Output]"
+              endId="Package\Get Report Data\Data Conversion 1.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Report Data\Get ANW Appl Count SP.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Get Report Data.Paths[OLE DB Source Output1]"
+              endId="Package\Get Report Data\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Report Data\AN4 Appl Count SP.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Get Report Data.Paths[Union All Output 1]"
+              endId="Package\Get Report Data\Copy Data To MySQL.Inputs[ODBC Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Get Report Data\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move File To Processed"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{43F4702F-2CD7-48FE-8382-48AC46D3EED1}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move File To Processed"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="MoveFile"
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="User::FileToMove"
+          TaskIsSourceVariable="True"
+          TaskDestinationPath="User::ProcessedFilePath"
+          TaskIsDestinationVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{BC1FC981-AC10-43DD-85A7-CD50AD9ADE0E}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData />
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update AN4 Report Tracking Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0C617FA5-D8C0-4CF2-A762-B675F67667C2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update AN4 Report Tracking Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Update AN4 FileName"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Exec [Reports].[DBA_ReportHistoryTracking_Update] ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">$Package::RptFileName</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@RptFileName:Input",{4772AB12-3A37-4EE0-B4D0-96242EDD0C6E};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AN3PSSQL03]"
+                  connectionManagerRefId="Package.ConnectionManagers[AN3PSSQL03]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Output].Columns[RowUpdated]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Output].ExternalColumns[RowUpdated]"
+                      lineageId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Output].Columns[RowUpdated]"
+                      name="RowUpdated"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Output].ExternalColumns[RowUpdated]"
+                      dataType="i4"
+                      name="RowUpdated" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output].Columns[RowUpdated]"
+                      dataType="i4"
+                      lineageId="Package\Update AN4 Report Tracking Table\Update AN4 FileName.Outputs[OLE DB Source Error Output].Columns[RowUpdated]"
+                      name="RowUpdated" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update AWN Report Tracking Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FB0BBEDD-B19C-477E-AD08-1C39073FC096}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update AWN Report Tracking Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Update AWN Report Tracking Table\Update ANW FileName"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Update ANW FileName"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Exec [dbo].[DBA_ReportHistoryTracking_Update] ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@RptFileName:Input",{4772AB12-3A37-4EE0-B4D0-96242EDD0C6E};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PSSQL02]"
+                  connectionManagerRefId="Package.ConnectionManagers[PSSQL02]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Output].Columns[RecordUpdated]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Output].ExternalColumns[RecordUpdated]"
+                      lineageId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Output].Columns[RecordUpdated]"
+                      name="RecordUpdated"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Output].ExternalColumns[RecordUpdated]"
+                      dataType="i4"
+                      name="RecordUpdated" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output].Columns[RecordUpdated]"
+                      dataType="i4"
+                      lineageId="Package\Update AWN Report Tracking Table\Update ANW FileName.Outputs[OLE DB Source Error Output].Columns[RecordUpdated]"
+                      name="RecordUpdated" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9B72A1AA-F431-4F75-9243-246FA3F31373}"
+      DTS:From="Package\Get Report Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update AWN Report Tracking Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E2BB310-3FE4-40DC-A681-6D4AB047344D}"
+      DTS:From="Package\Update AWN Report Tracking Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update AN4 Report Tracking Table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Copy File to Smart Monitor"
+          TopLeft="408,269" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Get Report Data"
+          TopLeft="248,25" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Move File To Processed"
+          TopLeft="417,337" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Send Mail Task"
+          TopLeft="356,107" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Update AN4 Report Tracking Table"
+          TopLeft="45,250" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\Update AWN Report Tracking Table"
+          TopLeft="39,167" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="301.666666666667,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-138.666666666667,100"
+              Start="0,0"
+              End="-138.666666666667,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.6052963430013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.6052963430013"
+                    Point2="0,40.6052963430013"
+                    Point3="-4,40.6052963430013" />
+                  <mssgle:LineSegment
+                    End="-134.666666666667,40.6052963430013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.666666666667,40.6052963430013"
+                    Point2="-138.666666666667,40.6052963430013"
+                    Point3="-138.666666666667,44.6052963430013" />
+                  <mssgle:LineSegment
+                    End="-138.666666666667,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="165.25,209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Report Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Get Report Data\Copy Data To MySQL"
+          TopLeft="192,285" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Get Report Data\Get ANW Appl Count SP"
+          TopLeft="292,19" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Get Report Data\Data Conversion"
+          TopLeft="83,99" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Get Report Data\Union All"
+          TopLeft="201,191" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Get Report Data\AN4 Appl Count SP"
+          TopLeft="75,20" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Get Report Data\Data Conversion 1"
+          TopLeft="299,97" />
+        <EdgeLayout
+          Id="Package\Get Report Data.Paths[Union All Output 1]"
+          TopLeft="262.5,233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20,52"
+              Start="0,0"
+              End="20,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="16,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16,26"
+                    Point2="20,26"
+                    Point3="20,30" />
+                  <mssgle:LineSegment
+                    End="20,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Report Data.Paths[OLE DB Source Output1]"
+          TopLeft="161,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Report Data.Paths[OLE DB Source Output]"
+          TopLeft="385.75,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Report Data.Paths[Data Conversion Output1]"
+          TopLeft="162,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81.3333333333333,50"
+              Start="0,0"
+              End="81.3333333333333,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6147672552167" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6147672552167"
+                    Point2="0,29.6147672552167"
+                    Point3="4,29.6147672552167" />
+                  <mssgle:LineSegment
+                    End="77.3333333333333,29.6147672552167" />
+                  <mssgle:CubicBezierSegment
+                    Point1="77.3333333333333,29.6147672552167"
+                    Point2="81.3333333333333,29.6147672552167"
+                    Point3="81.3333333333333,33.6147672552167" />
+                  <mssgle:LineSegment
+                    End="81.3333333333333,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Report Data.Paths[Data Conversion Output]"
+          TopLeft="382.5,139">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-120,52"
+              Start="0,0"
+              End="-120,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-116,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116,26"
+                    Point2="-120,26"
+                    Point3="-120,30" />
+                  <mssgle:LineSegment
+                    End="-120,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Report Data\Copy Data To MySQL">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Report Data\Get ANW Appl Count SP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Report Data\AN4 Appl Count SP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Update AN4 Report Tracking Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Update AN4 Report Tracking Table\Update AN4 FileName"
+          TopLeft="210,51" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Update AN4 Report Tracking Table\Update AN4 FileName">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Update AWN Report Tracking Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Update AWN Report Tracking Table\Update ANW FileName"
+          TopLeft="159,34" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Update AWN Report Tracking Table\Update ANW FileName">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

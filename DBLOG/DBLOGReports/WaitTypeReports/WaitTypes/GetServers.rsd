@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>PerformanceCollection</DataSourceReference>
+      <CommandText>SELECT     Name AS Servername, ServerID
+FROM         RTM.RTM.ServersList WITH (NOLOCK)
+WHERE     (Active = 1)
+ORDER BY Servername</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Servername">
+        <DataField>Servername</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ServerID">
+        <DataField>ServerID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

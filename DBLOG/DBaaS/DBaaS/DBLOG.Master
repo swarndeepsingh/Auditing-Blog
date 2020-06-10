@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DBLOG.master.cs" Inherits="DBaaS.DBLOG" %>
+
+<!DOCTYPE html>
+
+
+<html>
+    
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="ParentContent" runat="server">
+            <link href="/dblog3/css/dbaas.css" rel="stylesheet" type="text/css" />
+            
+        
+    </asp:ContentPlaceHolder>
+</head>
+
+    <body>
+    <form id="form1" runat="server">
+        <div style="width:100%; ">
+            
+                <asp:Table ID="Table1" runat="server" Height="16px" style="width:100%" BorderColor="Orange" BorderStyle="Solid" BorderWidth="2px">
+                
+                <asp:TableRow >
+                    <asp:TableCell  HorizontalAlign="Left" VerticalAlign="Middle" >
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/dblog.png" hight="22" Width="104"  />
+                    </asp:TableCell>
+
+                    <asp:TableCell  HorizontalAlign="Right" VerticalAlign="Middle">
+                        <asp:Label ID="label1" runat="server" Text="User:" Font-Names="Verdana"></asp:Label>
+                        <asp:Label ID="lblLDAPUser" runat="server" Text="User:" Font-Names="Verdana"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell  HorizontalAlign="Left" VerticalAlign="Middle">
+                        <asp:Button ID="btnLogout" runat="server" Text="Logout" BorderWidth="1" BorderStyle="Solid" BorderColor="Orange" OnClick="btnLogout_OnClick"></asp:Button>
+                    </asp:TableCell>
+                    
+                </asp:TableRow>
+                    
+            </asp:Table>
+            
+        </div>
+    
+        
+        <asp:ContentPlaceHolder ID="ChildContent" runat="server">
+
+        </asp:ContentPlaceHolder>
+        </form>
+    </body>
+    
+
+
+</html>

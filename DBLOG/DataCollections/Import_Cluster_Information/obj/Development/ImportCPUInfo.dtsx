@@ -1,0 +1,779 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/18/2016 4:40:25 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBLOG"
+  DTS:CreatorName="AN3PROD\ssingh"
+  DTS:DTSID="{2CE4810F-E885-4A66-80D4-D1A26E58174B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ImportCPUInfo"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{57243AB7-A3BF-47E6-9404-0DD3D2875687}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[10.5.20.48.DBLOG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7C2F0C26-8000-4632-AC3B-A360A4B07F4E}"
+      DTS:ObjectName="10.5.20.48.DBLOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.5.20.48;Initial Catalog=DBLOG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[dblog.DataCollection_Destination]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{79F29D67-C88F-4CFC-B831-AD444D571470}"
+      DTS:ObjectName="dblog.DataCollection_Destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=dblog;Initial Catalog=DataCollection;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Destination-10.5.20.48.RTM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7C63B7A1-A8A4-494E-B34C-B4F831527199}"
+      DTS:ObjectName="Destination-10.5.20.48.RTM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.5.20.48;Initial Catalog=RTM;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Variable_Source_Loopthrough]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CE59E264-65CE-4675-AB20-24678BDA9C47}"
+      DTS:ObjectName="Variable_Source_Loopthrough">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::ServerName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="UserName">@[User::username]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=;User ID=dp_user;Initial Catalog=master;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="0hHpXAighA=="
+            IV="eTlptFbg/1c=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+            <CipherData>
+              <CipherValue>eTlptFbg/1fZwFpu343XNTgewYdBxUNFFc+EciTiIH8TnDNfccEKMiNyzSDTatmMu58jj7LRCtCa8t7GdN/NapXZEXFWoDLCz4r9kECuLFl99rft2qAbe47zLy/ngSU7RoDzuRZVuqcbWmkiRkaFE+83CxB3P1LyqBof9G+GTtfhARiqseIj4w==</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{06F163C0-2E64-4688-8939-36078F1AF87E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="currentdatetime">
+      <DTS:VariableValue
+        DTS:DataType="8">'05/19/2016'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E7B59140-7CD8-4CD8-9C06-8CC1A062006B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ServerName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A7960DDD-A4A7-4F8D-9601-25C72464C1A4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ServerNames">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E0AD7BAC-6F2E-4689-8034-847A54D1F490}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ServerNameWaitTypes">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{97F8A77C-BA3E-4CF2-959F-381A89B035CA}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select &#xA;@@servername [servername]&#xA;,a.[OBJECT_NAME] &#xA;, a.counter_name&#xA;, a.instance_name&#xA;, a.cntr_value&#xA;--,case when a.counter_name = 'Buffer Cache Hit Ratio' then (a.cntr_value * 1.0 / b.cntr_value) * 100.0 else a.cntr_value end as cntr_value&#xA;, &quot;  + @[User::currentdatetime] + &quot; [DateCollected] &#xA;from sys.dm_os_performance_counters a&#xA;where a.counter_name in &#xA;(&#xA;'Full Scans/sec',&#xA;'Batch Requests/sec',&#xA;'Blocked tasks',&#xA;'Bulk Copy Rows/sec',&#xA;'Bulk Copy Throughput/sec',&#xA;'Lock Requests/sec',&#xA;'Lock Wait Time (ms)',&#xA;'Memory Grants Outstanding',&#xA;'Memory Grants Pending',&#xA;'Number of Deadlocks/sec',&#xA;'Page life expectancy'&#xA;/*,&#xA;'Transactions/sec',&#xA;'Write Transactions/sec'*/&#xA;)&#xA;&#xA;UNION&#xA;&#xA;SELECT @@servername [servername], 'BufferManager' [Object_name], 'Buffer Cache Hit Ratio' [Counter_name], '' [instancename],  &#xA;(a.cntr_value * 1.0 / b.cntr_value) * 100.0 [cntr_value], &quot; +  @[User::currentdatetime] + &quot; [DateCollected]&#xA;FROM sys.dm_os_performance_counters  a&#xA;JOIN  (SELECT cntr_value,OBJECT_NAME &#xA;    FROM sys.dm_os_performance_counters  &#xA;    WHERE counter_name = 'Buffer cache hit ratio base') b ON  a.OBJECT_NAME = b.OBJECT_NAME&#xA;WHERE a.counter_name = 'Buffer cache hit ratio'&#xA;&#xA;UNION&#xA;&#xA;SELECT  @@servername [servername]&#xA;,a.[OBJECT_NAME] &#xA;, a.counter_name&#xA;, a.instance_name&#xA;, a.cntr_value&#xA;,    getdate()  [DateCollected] &#xA;FROM sys.dm_os_performance_counters  a&#xA;where counter_name in &#xA;(&#xA;'Transactions/Sec', 'Write Transactions/Sec'&#xA;)&#xA;and instance_name in ('_Total')&#xA;&#xA;&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sqlcommand_source">
+      <DTS:VariableValue
+        DTS:DataType="8">select 
+@@servername [servername]
+,a.[OBJECT_NAME] 
+, a.counter_name
+, a.instance_name
+, a.cntr_value
+--,case when a.counter_name = 'Buffer Cache Hit Ratio' then (a.cntr_value * 1.0 / b.cntr_value) * 100.0 else a.cntr_value end as cntr_value
+, '05/19/2016' [DateCollected] 
+from sys.dm_os_performance_counters a
+where a.counter_name in 
+(
+'Full Scans/sec',
+'Batch Requests/sec',
+'Blocked tasks',
+'Bulk Copy Rows/sec',
+'Bulk Copy Throughput/sec',
+'Lock Requests/sec',
+'Lock Wait Time (ms)',
+'Memory Grants Outstanding',
+'Memory Grants Pending',
+'Number of Deadlocks/sec',
+'Page life expectancy'
+/*,
+'Transactions/sec',
+'Write Transactions/sec'*/
+)
+
+UNION
+
+SELECT @@servername [servername], 'BufferManager' [Object_name], 'Buffer Cache Hit Ratio' [Counter_name], '' [instancename],  
+(a.cntr_value * 1.0 / b.cntr_value) * 100.0 [cntr_value], '05/19/2016' [DateCollected]
+FROM sys.dm_os_performance_counters  a
+JOIN  (SELECT cntr_value,OBJECT_NAME 
+    FROM sys.dm_os_performance_counters  
+    WHERE counter_name = 'Buffer cache hit ratio base') b ON  a.OBJECT_NAME = b.OBJECT_NAME
+WHERE a.counter_name = 'Buffer cache hit ratio'
+
+UNION
+
+SELECT  @@servername [servername]
+,a.[OBJECT_NAME] 
+, a.counter_name
+, a.instance_name
+, a.cntr_value
+,    getdate()  [DateCollected] 
+FROM sys.dm_os_performance_counters  a
+where counter_name in 
+(
+'Transactions/Sec', 'Write Transactions/Sec'
+)
+and instance_name in ('_Total')
+
+</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5341180E-B276-4A81-9E49-0A69A2694B73}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;WITH [Waits] AS&#xA;    (SELECT&#xA;        [wait_type],&#xA;        [wait_time_ms] / 1000.0 AS [WaitS],&#xA;        ([wait_time_ms] - [signal_wait_time_ms]) / 1000.0 AS [ResourceS],&#xA;        [signal_wait_time_ms] / 1000.0 AS [SignalS],&#xA;        [waiting_tasks_count] AS [WaitCount],&#xA;       100.0 * [wait_time_ms] / SUM ([wait_time_ms]) OVER() AS [Percentage],&#xA;        ROW_NUMBER() OVER(ORDER BY [wait_time_ms] DESC) AS [RowNum]&#xA;    FROM sys.dm_os_wait_stats&#xA;    WHERE [wait_type] NOT IN (&#xA;        N'BROKER_EVENTHANDLER', N'BROKER_RECEIVE_WAITFOR',&#xA;        N'BROKER_TASK_STOP', N'BROKER_TO_FLUSH',&#xA;        N'BROKER_TRANSMITTER', N'CHECKPOINT_QUEUE',&#xA;        N'CHKPT', N'CLR_AUTO_EVENT',&#xA;        N'CLR_MANUAL_EVENT', N'CLR_SEMAPHORE',&#xA; &#xA;        -- Maybe uncomment these four if you have mirroring issues&#xA;        --N'DBMIRROR_DBM_EVENT', N'DBMIRROR_EVENTS_QUEUE',&#xA;        --N'DBMIRROR_WORKER_QUEUE', N'DBMIRRORING_CMD',&#xA; &#xA;        N'DIRTY_PAGE_POLL', N'DISPATCHER_QUEUE_SEMAPHORE',&#xA;        N'EXECSYNC', N'FSAGENT',&#xA;        N'FT_IFTS_SCHEDULER_IDLE_WAIT', N'FT_IFTSHC_MUTEX',&#xA; &#xA;        -- Maybe uncomment these six if you have AG issues&#xA;        N'HADR_CLUSAPI_CALL', N'HADR_FILESTREAM_IOMGR_IOCOMPLETION',&#xA;        N'HADR_LOGCAPTURE_WAIT', N'HADR_NOTIFICATION_DEQUEUE',&#xA;        N'HADR_TIMER_TASK', N'HADR_WORK_QUEUE',&#xA; &#xA;        N'KSOURCE_WAKEUP', N'LAZYWRITER_SLEEP',&#xA;        N'LOGMGR_QUEUE', N'MEMORY_ALLOCATION_EXT',&#xA;        N'ONDEMAND_TASK_QUEUE',&#xA;        N'PREEMPTIVE_XE_GETTARGETSTATE',&#xA;        N'PWAIT_ALL_COMPONENTS_INITIALIZED',&#xA;        N'PWAIT_DIRECTLOGCONSUMER_GETNEXT',&#xA;        N'QDS_PERSIST_TASK_MAIN_LOOP_SLEEP', N'QDS_ASYNC_QUEUE',&#xA;        N'QDS_CLEANUP_STALE_QUERIES_TASK_MAIN_LOOP_SLEEP',&#xA;        N'QDS_SHUTDOWN_QUEUE',&#xA;        N'REQUEST_FOR_DEADLOCK_SEARCH', N'RESOURCE_QUEUE',&#xA;        N'SERVER_IDLE_CHECK', N'SLEEP_BPOOL_FLUSH',&#xA;        N'SLEEP_DBSTARTUP', N'SLEEP_DCOMSTARTUP',&#xA;        N'SLEEP_MASTERDBREADY', N'SLEEP_MASTERMDREADY',&#xA;        N'SLEEP_MASTERUPGRADED', N'SLEEP_MSDBSTARTUP',&#xA;        N'SLEEP_SYSTEMTASK', N'SLEEP_TASK',&#xA;        N'SLEEP_TEMPDBSTARTUP', N'SNI_HTTP_ACCEPT',&#xA;        N'SP_SERVER_DIAGNOSTICS_SLEEP', N'SQLTRACE_BUFFER_FLUSH',&#xA;        N'SQLTRACE_INCREMENTAL_FLUSH_SLEEP',&#xA;        N'SQLTRACE_WAIT_ENTRIES', N'WAIT_FOR_RESULTS',&#xA;        N'WAITFOR', N'WAITFOR_TASKSHUTDOWN',&#xA;        N'WAIT_XTP_RECOVERY',&#xA;        N'WAIT_XTP_HOST_WAIT', N'WAIT_XTP_OFFLINE_CKPT_NEW_LOG',&#xA;        N'WAIT_XTP_CKPT_CLOSE', N'XE_DISPATCHER_JOIN',&#xA;        N'XE_DISPATCHER_WAIT', N'XE_TIMER_EVENT')&#xA;    AND [waiting_tasks_count] &gt; 0&#xA;    )&#xA;SELECT&#xA;    @@servername [servername],&#xA;    MAX ([W1].[wait_type]) AS [WaitType],&#xA;    CAST (MAX ([W1].[WaitS]) AS DECIMAL (16,2)) AS [Wait_S],&#xA;    CAST (MAX ([W1].[ResourceS]) AS DECIMAL (16,2)) AS [Resource_S],&#xA;    CAST (MAX ([W1].[SignalS]) AS DECIMAL (16,2)) AS [Signal_S],&#xA;    MAX ([W1].[WaitCount]) AS [WaitCount],&#xA;    CAST (MAX ([W1].[Percentage]) AS DECIMAL (5,2)) AS [Percentage],&#xA;    CAST ((MAX ([W1].[WaitS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgWait_S],&#xA;    CAST ((MAX ([W1].[ResourceS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgRes_S],&#xA;    CAST ((MAX ([W1].[SignalS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgSig_S],&#xA;&quot;  + @[User::currentdatetime] + &quot; [DateCollected] &#xA;FROM [Waits] AS [W1]&#xA;INNER JOIN [Waits] AS [W2]&#xA;    ON [W2].[RowNum] &lt;= [W1].[RowNum]&#xA;GROUP BY [W1].[RowNum]&#xA;HAVING SUM ([W2].[Percentage]) - MAX( [W1].[Percentage] ) &lt; 95; -- percentage threshold&#xA;&#xA;&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sqlcommand_source_waittypes">
+      <DTS:VariableValue
+        DTS:DataType="8">WITH [Waits] AS
+    (SELECT
+        [wait_type],
+        [wait_time_ms] / 1000.0 AS [WaitS],
+        ([wait_time_ms] - [signal_wait_time_ms]) / 1000.0 AS [ResourceS],
+        [signal_wait_time_ms] / 1000.0 AS [SignalS],
+        [waiting_tasks_count] AS [WaitCount],
+       100.0 * [wait_time_ms] / SUM ([wait_time_ms]) OVER() AS [Percentage],
+        ROW_NUMBER() OVER(ORDER BY [wait_time_ms] DESC) AS [RowNum]
+    FROM sys.dm_os_wait_stats
+    WHERE [wait_type] NOT IN (
+        N'BROKER_EVENTHANDLER', N'BROKER_RECEIVE_WAITFOR',
+        N'BROKER_TASK_STOP', N'BROKER_TO_FLUSH',
+        N'BROKER_TRANSMITTER', N'CHECKPOINT_QUEUE',
+        N'CHKPT', N'CLR_AUTO_EVENT',
+        N'CLR_MANUAL_EVENT', N'CLR_SEMAPHORE',
+ 
+        -- Maybe uncomment these four if you have mirroring issues
+        --N'DBMIRROR_DBM_EVENT', N'DBMIRROR_EVENTS_QUEUE',
+        --N'DBMIRROR_WORKER_QUEUE', N'DBMIRRORING_CMD',
+ 
+        N'DIRTY_PAGE_POLL', N'DISPATCHER_QUEUE_SEMAPHORE',
+        N'EXECSYNC', N'FSAGENT',
+        N'FT_IFTS_SCHEDULER_IDLE_WAIT', N'FT_IFTSHC_MUTEX',
+ 
+        -- Maybe uncomment these six if you have AG issues
+        N'HADR_CLUSAPI_CALL', N'HADR_FILESTREAM_IOMGR_IOCOMPLETION',
+        N'HADR_LOGCAPTURE_WAIT', N'HADR_NOTIFICATION_DEQUEUE',
+        N'HADR_TIMER_TASK', N'HADR_WORK_QUEUE',
+ 
+        N'KSOURCE_WAKEUP', N'LAZYWRITER_SLEEP',
+        N'LOGMGR_QUEUE', N'MEMORY_ALLOCATION_EXT',
+        N'ONDEMAND_TASK_QUEUE',
+        N'PREEMPTIVE_XE_GETTARGETSTATE',
+        N'PWAIT_ALL_COMPONENTS_INITIALIZED',
+        N'PWAIT_DIRECTLOGCONSUMER_GETNEXT',
+        N'QDS_PERSIST_TASK_MAIN_LOOP_SLEEP', N'QDS_ASYNC_QUEUE',
+        N'QDS_CLEANUP_STALE_QUERIES_TASK_MAIN_LOOP_SLEEP',
+        N'QDS_SHUTDOWN_QUEUE',
+        N'REQUEST_FOR_DEADLOCK_SEARCH', N'RESOURCE_QUEUE',
+        N'SERVER_IDLE_CHECK', N'SLEEP_BPOOL_FLUSH',
+        N'SLEEP_DBSTARTUP', N'SLEEP_DCOMSTARTUP',
+        N'SLEEP_MASTERDBREADY', N'SLEEP_MASTERMDREADY',
+        N'SLEEP_MASTERUPGRADED', N'SLEEP_MSDBSTARTUP',
+        N'SLEEP_SYSTEMTASK', N'SLEEP_TASK',
+        N'SLEEP_TEMPDBSTARTUP', N'SNI_HTTP_ACCEPT',
+        N'SP_SERVER_DIAGNOSTICS_SLEEP', N'SQLTRACE_BUFFER_FLUSH',
+        N'SQLTRACE_INCREMENTAL_FLUSH_SLEEP',
+        N'SQLTRACE_WAIT_ENTRIES', N'WAIT_FOR_RESULTS',
+        N'WAITFOR', N'WAITFOR_TASKSHUTDOWN',
+        N'WAIT_XTP_RECOVERY',
+        N'WAIT_XTP_HOST_WAIT', N'WAIT_XTP_OFFLINE_CKPT_NEW_LOG',
+        N'WAIT_XTP_CKPT_CLOSE', N'XE_DISPATCHER_JOIN',
+        N'XE_DISPATCHER_WAIT', N'XE_TIMER_EVENT')
+    AND [waiting_tasks_count] &gt; 0
+    )
+SELECT
+    @@servername [servername],
+    MAX ([W1].[wait_type]) AS [WaitType],
+    CAST (MAX ([W1].[WaitS]) AS DECIMAL (16,2)) AS [Wait_S],
+    CAST (MAX ([W1].[ResourceS]) AS DECIMAL (16,2)) AS [Resource_S],
+    CAST (MAX ([W1].[SignalS]) AS DECIMAL (16,2)) AS [Signal_S],
+    MAX ([W1].[WaitCount]) AS [WaitCount],
+    CAST (MAX ([W1].[Percentage]) AS DECIMAL (5,2)) AS [Percentage],
+    CAST ((MAX ([W1].[WaitS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgWait_S],
+    CAST ((MAX ([W1].[ResourceS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgRes_S],
+    CAST ((MAX ([W1].[SignalS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgSig_S],
+'05/19/2016' [DateCollected] 
+FROM [Waits] AS [W1]
+INNER JOIN [Waits] AS [W2]
+    ON [W2].[RowNum] &lt;= [W1].[RowNum]
+GROUP BY [W1].[RowNum]
+HAVING SUM ([W2].[Percentage]) - MAX( [W1].[Percentage] ) &lt; 95; -- percentage threshold
+
+</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ACA66193-E175-4185-AF9C-BAE7430FB67A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="username">
+      <DTS:VariableValue
+        DTS:DataType="8">dp_user</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{0A7E0DF9-E3C5-46F5-94A6-04459F3F79A9}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Container\Loop through servers"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{77B702CA-F0C5-472D-BB9D-B84A6BD8C56A}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Loop through servers">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{57F9D2E3-EF60-4BF6-AABD-077938CA9583}"
+            DTS:ObjectName="{57F9D2E3-EF60-4BF6-AABD-077938CA9583}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::ServerNames" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Container\Loop through servers\Insert CPU Information"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{EDE6EB7F-6318-44CE-A34E-900D6A90953D}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Insert CPU Information"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command"
+                      componentClassID="Microsoft.OLEDBCommand"
+                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                      name="OLE DB Command"
+                      usesDispositions="true"
+                      version="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[RTM].[usp_SetCPUCount] ?, ?</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Destination-10.5.20.48.RTM]"
+                          connectionManagerRefId="Package.ConnectionManagers[Destination-10.5.20.48.RTM]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input]"
+                          errorOrTruncationOperation="Command Execution"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Command Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input].Columns[ServerName]"
+                              cachedDataType="wstr"
+                              cachedLength="128"
+                              cachedName="ServerName"
+                              externalMetadataColumnId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@servername]"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].Columns[ServerName]" />
+                            <inputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input].Columns[Cores]"
+                              cachedDataType="i4"
+                              cachedName="Cores"
+                              externalMetadataColumnId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@cpuCount]"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cores]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@servername]"
+                              dataType="wstr"
+                              length="128"
+                              name="@servername">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@cpuCount]"
+                              dataType="i4"
+                              name="@cpuCount">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">81</property>
+                              </properties>
+                            </externalMetadataColumn>
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Outputs[OLE DB Command Output]"
+                          exclusionGroup="1"
+                          name="OLE DB Command Output"
+                          synchronousInputId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Command Error Output"
+                          synchronousInputId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="OLE DB Source"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DECLARE @xp_msver TABLE (
+    [idx] [int] NULL
+    ,[c_name] [varchar](100) NULL
+    ,[int_val] [float] NULL
+    ,[c_val] [varchar](128) NULL
+    )
+ 
+INSERT INTO @xp_msver
+EXEC ('[master]..[xp_msver]');;
+ 
+WITH [ProcessorInfo]
+AS (
+    SELECT ([cpu_count] / [hyperthread_ratio]) AS [number_of_physical_cpus]
+        ,CASE
+            WHEN hyperthread_ratio = cpu_count
+                THEN cpu_count
+            ELSE (([cpu_count] - [hyperthread_ratio]) / ([cpu_count] / [hyperthread_ratio]))
+            END AS [number_of_cores_per_cpu]
+        ,CASE
+            WHEN hyperthread_ratio = cpu_count
+                THEN cpu_count
+            ELSE ([cpu_count] / [hyperthread_ratio]) * (([cpu_count] - [hyperthread_ratio]) / ([cpu_count] / [hyperthread_ratio]))
+            END AS [total_number_of_cores]
+        ,[cpu_count] AS [number_of_virtual_cpus]
+        ,(
+            SELECT [c_val]
+            FROM @xp_msver
+            WHERE [c_name] = 'Platform'
+            ) AS [cpu_category]
+    FROM [sys].[dm_os_sys_info]
+    )
+SELECT @@SERVERNAME [ServerName],
+    case when [total_number_of_cores] = 0 
+		then [number_of_virtual_cpus]
+		else total_number_of_cores
+	end as 'Cores'
+    
+FROM [ProcessorInfo]</property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Variable_Source_Loopthrough]"
+                          connectionManagerRefId="Package.ConnectionManagers[Variable_Source_Loopthrough]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output]"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].Columns[ServerName]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ServerName]"
+                              length="128"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].Columns[ServerName]"
+                              name="ServerName"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cores]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cores]"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cores]"
+                              name="Cores"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ServerName]"
+                              dataType="wstr"
+                              length="128"
+                              name="ServerName" />
+                            <externalMetadataColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cores]"
+                              dataType="i4"
+                              name="Cores" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ServerName]"
+                              dataType="wstr"
+                              length="128"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ServerName]"
+                              name="ServerName" />
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cores]"
+                              dataType="i4"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cores]"
+                              name="Cores" />
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Container\Loop through servers\Insert CPU Information.Paths[OLE DB Source Output]"
+                      endId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command.Inputs[OLE DB Command Input]"
+                      name="OLE DB Source Output"
+                      startId="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source.Outputs[OLE DB Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{E7780C6C-2EF5-46E6-9568-1BB418B54366}"
+              DTS:ObjectName="{E7780C6C-2EF5-46E6-9568-1BB418B54366}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::ServerName" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get_List_of_Active_Servers"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{38BFF527-9ECF-4893-AC15-BD4B4324C492}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get_List_of_Active_Servers"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7C2F0C26-8000-4632-AC3B-A360A4B07F4E}"
+          SQLTask:SqlStatementSource="select serverip from rtm.rtm.serverdetails&#xA;where connectionstatus = 'Connected' &#xA;and substring(SQLVersion,0,charindex ('.',SQLVersion)) &gt; 8"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ServerNames" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{56AD0206-E398-4E50-8452-047799172498}"
+      DTS:From="Package\Get_List_of_Active_Servers"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Container\Loop through servers\Insert CPU Information"
+          TopLeft="25,35" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="286,251"
+          Size="286,294"
+          Id="Package\Container\Loop through servers"
+          TopLeft="12.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="302,401"
+          Size="302,444"
+          Id="Package\Container"
+          TopLeft="343,195" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Get_List_of_Active_Servers"
+          TopLeft="402,91" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="506.5,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.5,62"
+              Start="0,0"
+              End="-12.5,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="-4,31" />
+                  <mssgle:LineSegment
+                    End="-8.5,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.5,31"
+                    Point2="-12.5,31"
+                    Point3="-12.5,35" />
+                  <mssgle:LineSegment
+                    End="-12.5,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Container\Loop through servers\Insert CPU Information">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source"
+          TopLeft="296,191" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Container\Loop through servers\Insert CPU Information\OLE DB Command"
+          TopLeft="285,303" />
+        <EdgeLayout
+          Id="Package\Container\Loop through servers\Insert CPU Information.Paths[OLE DB Source Output]"
+          TopLeft="370.5,233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Container\Loop through servers\Insert CPU Information\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>LS2C_COB_COUNT</Name>
+    <LastWriteTime>2018-03-07T15:00:31.7129396Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+    <Salt>xW5ND4Hn</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACIgUHWcidEeajXqE2ZSwJQAAAAACAAAAAAADZgAAwAAAABAAAABYi7pOu78kAszr4qnoUn7QAAAAAASAAACgAAAAEAAAAK7ZZGq4jkcFehLWlz7aCygoAAAA/EsyYuoX1K4f9aOeJ0IHP2qNl61xq93KzWCMAeGy4SFG3LrsrO746hQAAABai3c6n9jRg6+nUZMZYcpg6doAOA==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>COBReport.dtsx</Name>
+      <LastWriteTime>2018-08-21T03:00:11.573878Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>c6wS0DuE</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACIgUHWcidEeajXqE2ZSwJQAAAAACAAAAAAADZgAAwAAAABAAAABfnXD7dZfZF1Mb+dozM6KeAAAAAASAAACgAAAAEAAAAPWvVtQxnK38gDYB/KUsfWMoAAAAtE3Q0AklxpTahbCqyfSb7qmZpE8CgDIaTmbK1djEB7aR94qEelZgYRQAAADa0PFSYt1+/aZflx9gvrGqG78GBA==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

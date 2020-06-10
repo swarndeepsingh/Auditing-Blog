@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Invoice_allpartners", "Invoice_allpartners.rptproj", "{A7920FAD-595F-4808-92ED-94BE06D1345A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.Debug|Default.ActiveCfg = Debug
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.Debug|Default.Build.0 = Debug
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.Debug|Default.Deploy.0 = Debug
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.DebugLocal|Default.Build.0 = DebugLocal
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.Release|Default.ActiveCfg = Release
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.Release|Default.Build.0 = Release
+		{A7920FAD-595F-4808-92ED-94BE06D1345A}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

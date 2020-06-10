@@ -1,0 +1,218 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="bced26b7-565e-4b21-a204-5f5da2c832c1" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Ifly Dw_DV</ID>
+  <Name>Ifly Dw_DV</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:NameMatchingCriteria</Name>
+      <Value>1</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Ifly Dw</DataSourceID>
+  <Schema>
+    <xs:schema id="Ifly_x0020_Dw_DV" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Ifly_x0020_Dw_DV" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="76e2f429-066f-43c8-b626-8d1e04e28265">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_DIM_Employees" msprop:design-time-name="41212088-c9f1-4b0f-87e9-f69bdacccab7" msprop:DbTableName="DIM_Employees" msprop:FriendlyName="DIM_Employees" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="emp_id" msprop:design-time-name="60680be8-e83b-4b47-a3b5-55d0671c55ce" msprop:DbColumnName="emp_id" msprop:FriendlyName="emp_id" type="xs:int" />
+                  <xs:element name="emp_firstname" msprop:design-time-name="bf987470-1a13-4a21-9803-2bc83df9a6de" msprop:DbColumnName="emp_firstname" msprop:FriendlyName="emp_firstname" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="emp_lastname" msprop:design-time-name="9aceb1e1-cdaf-4a4d-99ac-97cc0a8c9b6c" msprop:DbColumnName="emp_lastname" msprop:FriendlyName="emp_lastname" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="emp_email" msprop:design-time-name="83a2cacb-1111-42ed-9b96-5c61cd6907f6" msprop:DbColumnName="emp_email" msprop:FriendlyName="emp_email" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="emp_status" msprop:design-time-name="b476d7ec-ee9d-4dec-8b50-8f94065fb626" msprop:DbColumnName="emp_status" msprop:FriendlyName="emp_status" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DIM_RequestCategory" msprop:design-time-name="4b7ad604-696e-4efa-96f7-837d890cf1fb" msprop:DbTableName="DIM_RequestCategory" msprop:FriendlyName="DIM_RequestCategory" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="RT_Code" msprop:design-time-name="e5bb812e-71a0-4e9f-860c-763723ad7f74" msprop:DbColumnName="RT_Code" msprop:FriendlyName="RT_Code">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="RT_Description" msprop:design-time-name="1cc04465-2eb5-4e0c-9323-5edac1ce9f18" msprop:DbColumnName="RT_Description" msprop:FriendlyName="RT_Description" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="200" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DIM_RO" msprop:design-time-name="54957e8b-bca2-478c-a8da-f0140619b4a7" msprop:DbTableName="DIM_RO" msprop:FriendlyName="DIM_RO" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="RO_Code" msprop:design-time-name="a6ccdab4-ee1d-460d-91d0-6486bab75b11" msprop:DbColumnName="RO_Code" msprop:FriendlyName="RO_Code" type="xs:int" />
+                  <xs:element name="RO_City" msprop:design-time-name="7e652883-2e4f-472c-ab3d-2e1b39b30d86" msprop:DbColumnName="RO_City" msprop:FriendlyName="RO_City" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="RO_Currency" msprop:design-time-name="017235fb-3933-4e9a-af81-2fe1f1a64f3d" msprop:DbColumnName="RO_Currency" msprop:FriendlyName="RO_Currency" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DIM_Status" msprop:design-time-name="1b13d38a-ec58-4225-b076-7a35749d9bc9" msprop:DbTableName="DIM_Status" msprop:FriendlyName="DIM_Status" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="STAT_code" msprop:design-time-name="f79e9c31-bfc5-4e3a-94ea-82595a21aeab" msprop:DbColumnName="STAT_code" msprop:FriendlyName="STAT_code">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="STATUs_Type" msprop:design-time-name="8eda018e-f3d1-457d-9861-cc63b9941610" msprop:DbColumnName="STATUs_Type" msprop:FriendlyName="STATUs_Type" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_FACT_POmeasure" msprop:design-time-name="f92ffc42-c4cf-4b6c-999e-4c8d4c4592f7" msprop:DbTableName="FACT_POmeasure" msprop:FriendlyName="FACT_POmeasure" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="pomeasure_id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="38e37370-3680-444e-8457-8f4740a48f0a" msprop:DbColumnName="pomeasure_id" msprop:FriendlyName="pomeasure_id" type="xs:long" />
+                  <xs:element name="POID" msprop:design-time-name="7b31dc32-73df-41b6-bf8f-e627523ce6be" msprop:DbColumnName="POID" msprop:FriendlyName="POID" type="xs:int" minOccurs="0" />
+                  <xs:element name="emp_id" msprop:design-time-name="1d8438a1-a706-4c4b-8092-d239ff933ebc" msprop:DbColumnName="emp_id" msprop:FriendlyName="emp_id" type="xs:int" minOccurs="0" />
+                  <xs:element name="RO_Code" msprop:design-time-name="07c16ebe-a2b7-43f2-9988-ad352bf4ce1a" msprop:DbColumnName="RO_Code" msprop:FriendlyName="RO_Code" type="xs:int" minOccurs="0" />
+                  <xs:element name="RT_Code" msprop:design-time-name="4e8619a5-193e-45c0-b349-d9a249b2a070" msprop:DbColumnName="RT_Code" msprop:FriendlyName="RT_Code" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="stat_code" msprop:design-time-name="de0df2c4-2461-4e14-85af-54bf1ee41747" msprop:DbColumnName="stat_code" msprop:FriendlyName="stat_code" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="cost" msprop:design-time-name="213c1c45-3095-4eb4-a9f9-b049a7bac8ea" msprop:DbColumnName="cost" msprop:FriendlyName="cost" type="xs:double" minOccurs="0" />
+                  <xs:element name="last_updated" msprop:design-time-name="addb2369-3304-4643-b2fc-bddfabdaf92d" msprop:DbColumnName="last_updated" msprop:FriendlyName="last_updated" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="request_year" msprop:design-time-name="633bdf28-199a-41cd-a556-28fbba19c4c3" msprop:DbColumnName="request_year" msprop:FriendlyName="request_year" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Description" msprop:design-time-name="8f74be48-075b-47f4-a909-865714ed044f" msprop:DbColumnName="Description" msprop:FriendlyName="Description" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1024" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DIM_Employees" />
+          <xs:field xpath="emp_id" />
+        </xs:unique>
+        <xs:unique name="dbo_DIM_RequestCategory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DIM_RequestCategory" />
+          <xs:field xpath="RT_Code" />
+        </xs:unique>
+        <xs:unique name="dbo_DIM_RO_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DIM_RO" />
+          <xs:field xpath="RO_Code" />
+        </xs:unique>
+        <xs:unique name="dbo_DIM_Status_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DIM_Status" />
+          <xs:field xpath="STAT_code" />
+        </xs:unique>
+      </xs:element>
+      <xs:annotation>
+        <xs:appinfo>
+          <msdata:Relationship name="FACT_POmeasure-DIM_Employees" msdata:parent="dbo_DIM_Employees" msdata:child="dbo_FACT_POmeasure" msdata:parentkey="emp_id" msdata:childkey="emp_id" />
+          <msdata:Relationship name="FACT_POmeasure-DIM_RO" msdata:parent="dbo_DIM_RO" msdata:child="dbo_FACT_POmeasure" msdata:parentkey="RO_Code" msdata:childkey="RO_Code" />
+          <msdata:Relationship name="FACT_POmeasure-DIM_RequestCategory" msdata:parent="dbo_DIM_RequestCategory" msdata:child="dbo_FACT_POmeasure" msdata:parentkey="RT_Code" msdata:childkey="RT_Code" />
+          <msdata:Relationship name="FACT_POmeasure-DIM_Status" msdata:parent="dbo_DIM_Status" msdata:child="dbo_FACT_POmeasure" msdata:parentkey="STAT_code" msdata:childkey="stat_code" />
+        </xs:appinfo>
+      </xs:annotation>
+    </xs:schema>
+    <Ifly_x0020_Dw_DV xmlns="" />
+  </Schema>
+</DataSourceView>

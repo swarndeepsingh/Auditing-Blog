@@ -1,0 +1,3 @@
+﻿CREATE UNIQUE CLUSTERED INDEX [IDX_Alert_Recipients_AlertId_EmailProfileId_RecipEmail]
+    ON [DBLog].[Alert_Recipients]([AlertId] ASC, [EmailProfileId] ASC, [RecipientEmail] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF, ONLINE = OFF, MAXDOP = 0);
+

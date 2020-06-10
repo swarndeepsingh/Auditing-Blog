@@ -1,0 +1,3 @@
+﻿ALTER TABLE [DBLog].[Trace_AuditTSQL_Archive]
+    ADD CONSTRAINT [FK_Trace_AuditTSQL_Archive_Trace_Info] FOREIGN KEY ([RowID]) REFERENCES [DBLog].[Trace_Info] ([ROWID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>ImportPerformanceCollection</Name>
+    <LastWriteTime>2016-08-22T18:41:25.9566275Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+    <Salt>JoC++NY7</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIME/Q9AjdUa2WUrB/bmT0wAAAAACAAAAAAADZgAAwAAAABAAAAB5imc7ZtnTEEqhx94yrfyAAAAAAASAAACgAAAAEAAAABkNFFZLdQ1Id6OjH7P7Qy4oAAAAUTk2jqOJja7PbM4zCYSUWuXCwIqMcOJLvPkBy0n82TCleEA6uZ+J/hQAAADxhKw+0dzdtJbTJF+1ZejmJNXL6g==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>BulkInsertPerformanceCounters.dtsx</Name>
+      <LastWriteTime>2016-05-26T21:58:47.5226122Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>WBul9fuc</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIME/Q9AjdUa2WUrB/bmT0wAAAAACAAAAAAADZgAAwAAAABAAAACJSwswhdcTlkk/4xE3BpfkAAAAAASAAACgAAAAEAAAAOcBFZJwPJIiMgiZCwddwqcoAAAAt9nk3QgOMNdjxOW2iM2O5VPwZ3tWrmZy6bddDe+i+qNqFazHXXMrERQAAADoqIWcR89o4gc0f1U4o1k9KmT6EA==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>BulkInsertDBLOG.dtsx</Name>
+      <LastWriteTime>2016-08-24T18:20:46.8372031Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>sTyAcWGC</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIME/Q9AjdUa2WUrB/bmT0wAAAAACAAAAAAADZgAAwAAAABAAAABaaaIkB9aq5WKvs1P0yDQbAAAAAASAAACgAAAAEAAAAHeII97M1DEvcP1MYul0MuQoAAAAJVTUOtvzfGzDtE6emCDZgDRCgJBBaWfie92/2q24IgN81NhN+PwLNxQAAAD9+vzE/kdu7dvsNggSLmmmhyA+5Q==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

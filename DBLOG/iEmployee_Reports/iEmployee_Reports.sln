@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SSIS_Data_Population", "SSIS_Data_Population\SSIS_Data_Population.dtproj", "{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}"
+EndProject
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "iemp_Analysis_PurchaseOrders", "iemp_Analysis_PurchaseOrders\iemp_Analysis_PurchaseOrders.dwproj", "{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}"
+EndProject
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "Employee_Training_Analysis", "Employee_Training_Analysis\Employee_Training_Analysis.dwproj", "{85280870-533A-47D7-B647-044851FCECC0}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Employee_Training_Reports", "Employee_Training_Reports\Employee_Training_Reports.rptproj", "{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}"
+EndProject
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "Employee_Training_Analysis_V2", "Employee_Training_Analysis_V2\Employee_Training_Analysis_V2.dwproj", "{9D66B700-415D-49F8-ADFF-5D29B4E7B155}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "PORequests", "PORequests\PORequests.rptproj", "{2654AD4C-F993-4279-A5CB-B5900E8429E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Development|Default = Development|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.Debug|Default.ActiveCfg = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.Debug|Default.Build.0 = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.DebugLocal|Default.ActiveCfg = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.DebugLocal|Default.Build.0 = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.Development|Default.ActiveCfg = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.Development|Default.Build.0 = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.Release|Default.ActiveCfg = Development
+		{AAF83359-63E2-4E73-9A2E-8B1ECBC24F0C}.Release|Default.Build.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Debug|Default.ActiveCfg = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Debug|Default.Build.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Debug|Default.Deploy.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.DebugLocal|Default.ActiveCfg = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.DebugLocal|Default.Build.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.DebugLocal|Default.Deploy.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Development|Default.ActiveCfg = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Development|Default.Build.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Development|Default.Deploy.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Release|Default.ActiveCfg = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Release|Default.Build.0 = Development
+		{3E66C86C-C89C-40B8-A24B-EF2D08BD6A44}.Release|Default.Deploy.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Debug|Default.ActiveCfg = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Debug|Default.Build.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Debug|Default.Deploy.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.DebugLocal|Default.ActiveCfg = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.DebugLocal|Default.Build.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.DebugLocal|Default.Deploy.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Development|Default.ActiveCfg = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Development|Default.Build.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Development|Default.Deploy.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Release|Default.ActiveCfg = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Release|Default.Build.0 = Development
+		{85280870-533A-47D7-B647-044851FCECC0}.Release|Default.Deploy.0 = Development
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Debug|Default.ActiveCfg = Debug
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Debug|Default.Build.0 = Debug
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Debug|Default.Deploy.0 = Debug
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.DebugLocal|Default.Build.0 = DebugLocal
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Development|Default.ActiveCfg = DebugLocal
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Development|Default.Build.0 = DebugLocal
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Release|Default.ActiveCfg = Release
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Release|Default.Build.0 = Release
+		{944BC523-C457-4CEB-9DB0-B0D8D79FCA82}.Release|Default.Deploy.0 = Release
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Debug|Default.ActiveCfg = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Debug|Default.Build.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Debug|Default.Deploy.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.DebugLocal|Default.ActiveCfg = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.DebugLocal|Default.Build.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.DebugLocal|Default.Deploy.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Development|Default.ActiveCfg = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Development|Default.Build.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Development|Default.Deploy.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Release|Default.ActiveCfg = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Release|Default.Build.0 = Development
+		{9D66B700-415D-49F8-ADFF-5D29B4E7B155}.Release|Default.Deploy.0 = Development
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Debug|Default.ActiveCfg = Debug
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Debug|Default.Build.0 = Debug
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Debug|Default.Deploy.0 = Debug
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.DebugLocal|Default.Build.0 = DebugLocal
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Development|Default.ActiveCfg = DebugLocal
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Development|Default.Build.0 = DebugLocal
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Release|Default.ActiveCfg = Release
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Release|Default.Build.0 = Release
+		{2654AD4C-F993-4279-A5CB-B5900E8429E1}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

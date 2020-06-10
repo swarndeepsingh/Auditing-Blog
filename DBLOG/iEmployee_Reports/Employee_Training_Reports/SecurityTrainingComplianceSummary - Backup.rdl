@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <rd:DataSourceID>a558cfc1-503d-46e5-92c6-a76ade7e27e9</rd:DataSourceID>
+      <ConnectionProperties>
+        <DataProvider>OLEDB-MD</DataProvider>
+        <ConnectString>Data Source=10.5.20.48;Initial Catalog=Employee_Training_Analysis_V2</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <rd:ReportID>dfc64968-00c1-4572-b3bc-2577445a849f</rd:ReportID>
+  <Width>5in</Width>
+  <Body>
+    <Height>0.99in</Height>
+    <ColumnSpacing>0.5in</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>20pt</FontSize>
+          <Color>SteelBlue</Color>
+          <FontWeight>Bold</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Value>SecurityTrainingComplianceSummary</Value>
+        <CanGrow>true</CanGrow>
+        <Height>0.36in</Height>
+      </Textbox>
+      <Matrix Name="matrix1">
+        <Top>0.36in</Top>
+        <RowGroupings>
+          <RowGrouping>
+            <DynamicRows>
+              <Grouping Name="matrix1_RO_City">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!RO_City.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Sorting>
+                <SortBy>
+                  <SortExpression>=Fields!RO_City.Value</SortExpression>
+                </SortBy>
+              </Sorting>
+              <ReportItems>
+                <Textbox Name="RO_City">
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>10pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>White</Color>
+                    <BackgroundColor>#6e9eca</BackgroundColor>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                    <BorderColor>
+                      <Default>LightGrey</Default>
+                    </BorderColor>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                  <rd:DefaultName>RO_City</rd:DefaultName>
+                  <Value>=Fields!RO_City.Value</Value>
+                  <CanGrow>true</CanGrow>
+                  <Height>0.21in</Height>
+                  <Width>1in</Width>
+                </Textbox>
+              </ReportItems>
+            </DynamicRows>
+            <Width>1in</Width>
+          </RowGrouping>
+        </RowGroupings>
+        <MatrixRows>
+          <MatrixRow>
+            <MatrixCells>
+              <MatrixCell>
+                <ReportItems>
+                  <Textbox Name="textbox2">
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>10pt</FontSize>
+                      <BorderStyle>
+                        <Default>Solid</Default>
+                      </BorderStyle>
+                      <BorderColor>
+                        <Default>LightGrey</Default>
+                      </BorderColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                    <rd:DefaultName>textbox2</rd:DefaultName>
+                    <Value>=Sum(Fields!FACT_TRAININGNOTOFFERED_Count.Value)</Value>
+                    <CanGrow>true</CanGrow>
+                    <Height>0.21in</Height>
+                    <Width>1in</Width>
+                  </Textbox>
+                </ReportItems>
+              </MatrixCell>
+              <MatrixCell>
+                <ReportItems>
+                  <Textbox Name="textbox3">
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>10pt</FontSize>
+                      <BorderStyle>
+                        <Default>Solid</Default>
+                      </BorderStyle>
+                      <BorderColor>
+                        <Default>LightGrey</Default>
+                      </BorderColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                    <rd:DefaultName>textbox3</rd:DefaultName>
+                    <Value>=Sum(Fields!FACT_TRAININGOFFERED_Count.Value)</Value>
+                    <CanGrow>true</CanGrow>
+                    <Height>0.21in</Height>
+                    <Width>1in</Width>
+                  </Textbox>
+                </ReportItems>
+              </MatrixCell>
+            </MatrixCells>
+            <Height>0.21in</Height>
+          </MatrixRow>
+        </MatrixRows>
+        <Corner>
+          <ReportItems>
+            <Textbox Name="textbox4">
+              <Style>
+                <FontFamily>Tahoma</FontFamily>
+                <FontSize>10pt</FontSize>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <BorderColor>
+                  <Default>LightGrey</Default>
+                </BorderColor>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+              <rd:DefaultName>textbox4</rd:DefaultName>
+              <Value>
+              </Value>
+              <CanGrow>true</CanGrow>
+              <Height>0.21in</Height>
+            </Textbox>
+          </ReportItems>
+        </Corner>
+        <DataSetName>DataSet1</DataSetName>
+        <MatrixColumns>
+          <MatrixColumn>
+            <Width>1in</Width>
+          </MatrixColumn>
+          <MatrixColumn>
+            <Width>1in</Width>
+          </MatrixColumn>
+        </MatrixColumns>
+        <ColumnGroupings>
+          <ColumnGrouping>
+            <DynamicColumns>
+              <Grouping Name="matrix1_STATus_Type">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!STATus_Type.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Sorting>
+                <SortBy>
+                  <SortExpression>=Fields!STATus_Type.Value</SortExpression>
+                </SortBy>
+              </Sorting>
+              <ReportItems>
+                <Textbox Name="STATus_Type">
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>10pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>White</Color>
+                    <BackgroundColor>#6e9eca</BackgroundColor>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                    <BorderColor>
+                      <Default>LightGrey</Default>
+                    </BorderColor>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                  <rd:DefaultName>STATus_Type</rd:DefaultName>
+                  <Value>=Fields!STATus_Type.Value</Value>
+                  <CanGrow>true</CanGrow>
+                  <Height>0.21in</Height>
+                  <Width>1in</Width>
+                </Textbox>
+              </ReportItems>
+            </DynamicColumns>
+            <Height>0.21in</Height>
+          </ColumnGrouping>
+          <ColumnGrouping>
+            <StaticColumns>
+              <StaticColumn>
+                <ReportItems>
+                  <Textbox Name="textbox5">
+                    <Style>
+                      <Color>White</Color>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>10pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <BackgroundColor>SlateGray</BackgroundColor>
+                      <BorderStyle>
+                        <Default>Solid</Default>
+                      </BorderStyle>
+                      <BorderColor>
+                        <Default>LightGrey</Default>
+                      </BorderColor>
+                      <TextAlign>Right</TextAlign>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                    <rd:DefaultName>textbox5</rd:DefaultName>
+                    <Value>FACT TRAININGNOTOFFERED Count</Value>
+                    <CanGrow>true</CanGrow>
+                    <Height>0.21in</Height>
+                    <Width>1in</Width>
+                  </Textbox>
+                </ReportItems>
+              </StaticColumn>
+              <StaticColumn>
+                <ReportItems>
+                  <Textbox Name="textbox6">
+                    <Style>
+                      <Color>White</Color>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>10pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <BackgroundColor>SlateGray</BackgroundColor>
+                      <BorderStyle>
+                        <Default>Solid</Default>
+                      </BorderStyle>
+                      <BorderColor>
+                        <Default>LightGrey</Default>
+                      </BorderColor>
+                      <TextAlign>Right</TextAlign>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                    <rd:DefaultName>textbox6</rd:DefaultName>
+                    <Value>FACT TRAININGOFFERED Count</Value>
+                    <CanGrow>true</CanGrow>
+                    <Height>0.21in</Height>
+                    <Width>1in</Width>
+                  </Textbox>
+                </ReportItems>
+              </StaticColumn>
+            </StaticColumns>
+            <Height>0.21in</Height>
+          </ColumnGrouping>
+        </ColumnGroupings>
+      </Matrix>
+    </ReportItems>
+  </Body>
+  <Language>en-US</Language>
+  <LeftMargin>1in</LeftMargin>
+  <RightMargin>1in</RightMargin>
+  <TopMargin>1in</TopMargin>
+  <BottomMargin>1in</BottomMargin>
+  <PageWidth>8.5in</PageWidth>
+  <PageHeight>11in</PageHeight>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="RO_City">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM RO].[RO City].[RO City]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RO_Code">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM RO].[RO Code].[RO Code]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STAT_Code">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM Status].[STAT Code].[STAT Code]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STATus_Type">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM Status].[STATus Type].[STATus Type]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PUBLISHYEAR">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM SECURITYTRAININGMASTER].[PUBLISHYEAR].[PUBLISHYEAR]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PUBLISHREPORTINGOFFICE">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM SECURITYTRAININGMASTER].[PUBLISHREPORTINGOFFICE].[PUBLISHREPORTINGOFFICE]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRAININGNAME">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[DIM SECURITYTRAININGMASTER].[TRAININGNAME].[TRAININGNAME]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FACT_TRAININGNOTOFFERED_Count">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[FACT TRAININGNOTOFFERED Count]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FACT_TRAININGOFFERED_Count">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[FACT TRAININGOFFERED Count]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandType>Text</CommandType>
+        <CommandText>SELECT NON EMPTY { [Measures].[FACT TRAININGNOTOFFERED Count], [Measures].[FACT TRAININGOFFERED Count] } ON COLUMNS, NON EMPTY { ([DIM RO].[RO City].[RO City].ALLMEMBERS * [DIM RO].[RO Code].[RO Code].ALLMEMBERS * [DIM Status].[STAT Code].[STAT Code].ALLMEMBERS * [DIM Status].[STATus Type].[STATus Type].ALLMEMBERS * [DIM SECURITYTRAININGMASTER].[PUBLISHYEAR].[PUBLISHYEAR].ALLMEMBERS * [DIM SECURITYTRAININGMASTER].[PUBLISHREPORTINGOFFICE].[PUBLISHREPORTINGOFFICE].ALLMEMBERS * [DIM SECURITYTRAININGMASTER].[TRAININGNAME].[TRAININGNAME].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( { [DIM Status].[STAT Code].&amp;[CL], [DIM Status].[STAT Code].&amp;[OP], [DIM Status].[STAT Code].[All].UNKNOWNMEMBER } ) ON COLUMNS FROM [DataView_Ifly_Dw]) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <Timeout>0</Timeout>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM RO</DimensionName>
+                      <HierarchyName>RO City</HierarchyName>
+                      <HierarchyUniqueName>[DIM RO].[RO City]</HierarchyUniqueName>
+                      <LevelName>RO City</LevelName>
+                      <UniqueName>[DIM RO].[RO City].[RO City]</UniqueName>
+                    </ID>
+                    <ItemCaption>RO City</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM RO</DimensionName>
+                      <HierarchyName>RO Code</HierarchyName>
+                      <HierarchyUniqueName>[DIM RO].[RO Code]</HierarchyUniqueName>
+                      <LevelName>RO Code</LevelName>
+                      <UniqueName>[DIM RO].[RO Code].[RO Code]</UniqueName>
+                    </ID>
+                    <ItemCaption>RO Code</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM Status</DimensionName>
+                      <HierarchyName>STAT Code</HierarchyName>
+                      <HierarchyUniqueName>[DIM Status].[STAT Code]</HierarchyUniqueName>
+                      <LevelName>STAT Code</LevelName>
+                      <UniqueName>[DIM Status].[STAT Code].[STAT Code]</UniqueName>
+                    </ID>
+                    <ItemCaption>STAT Code</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM Status</DimensionName>
+                      <HierarchyName>STATus Type</HierarchyName>
+                      <HierarchyUniqueName>[DIM Status].[STATus Type]</HierarchyUniqueName>
+                      <LevelName>STATus Type</LevelName>
+                      <UniqueName>[DIM Status].[STATus Type].[STATus Type]</UniqueName>
+                    </ID>
+                    <ItemCaption>STATus Type</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM SECURITYTRAININGMASTER</DimensionName>
+                      <HierarchyName>PUBLISHYEAR</HierarchyName>
+                      <HierarchyUniqueName>[DIM SECURITYTRAININGMASTER].[PUBLISHYEAR]</HierarchyUniqueName>
+                      <LevelName>PUBLISHYEAR</LevelName>
+                      <UniqueName>[DIM SECURITYTRAININGMASTER].[PUBLISHYEAR].[PUBLISHYEAR]</UniqueName>
+                    </ID>
+                    <ItemCaption>PUBLISHYEAR</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM SECURITYTRAININGMASTER</DimensionName>
+                      <HierarchyName>PUBLISHREPORTINGOFFICE</HierarchyName>
+                      <HierarchyUniqueName>[DIM SECURITYTRAININGMASTER].[PUBLISHREPORTINGOFFICE]</HierarchyUniqueName>
+                      <LevelName>PUBLISHREPORTINGOFFICE</LevelName>
+                      <UniqueName>[DIM SECURITYTRAININGMASTER].[PUBLISHREPORTINGOFFICE].[PUBLISHREPORTINGOFFICE]</UniqueName>
+                    </ID>
+                    <ItemCaption>PUBLISHREPORTINGOFFICE</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>DIM SECURITYTRAININGMASTER</DimensionName>
+                      <HierarchyName>TRAININGNAME</HierarchyName>
+                      <HierarchyUniqueName>[DIM SECURITYTRAININGMASTER].[TRAININGNAME]</HierarchyUniqueName>
+                      <LevelName>TRAININGNAME</LevelName>
+                      <UniqueName>[DIM SECURITYTRAININGMASTER].[TRAININGNAME].[TRAININGNAME]</UniqueName>
+                    </ID>
+                    <ItemCaption>TRAININGNAME</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>FACT TRAININGNOTOFFERED Count</MeasureName>
+                      <UniqueName>[Measures].[FACT TRAININGNOTOFFERED Count]</UniqueName>
+                    </ID>
+                    <ItemCaption>FACT TRAININGNOTOFFERED Count</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>FACT TRAININGOFFERED Count</MeasureName>
+                      <UniqueName>[Measures].[FACT TRAININGOFFERED Count]</UniqueName>
+                    </ID>
+                    <ItemCaption>FACT TRAININGOFFERED Count</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                </Items>
+              </Select>
+              <From>DataView_Ifly_Dw</From>
+              <Filter>
+                <FilterItems>
+                  <FilterItem>
+                    <HierarchyUniqueName>[DIM Status].[STAT Code]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[DIM Status].[STAT Code].&amp;[CL]</MemberUniqueName>
+                        </Member>
+                        <Member>
+                          <MemberUniqueName>[DIM Status].[STAT Code].&amp;[OP]</MemberUniqueName>
+                        </Member>
+                        <Member>
+                          <MemberUniqueName>[DIM Status].[STAT Code].[All].UNKNOWNMEMBER</MemberUniqueName>
+                        </Member>
+                      </Members>
+                    </Condition>
+                  </FilterItem>
+                </FilterItems>
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement> SELECT NON EMPTY { [Measures].[FACT TRAININGNOTOFFERED Count], [Measures].[FACT TRAININGOFFERED Count] } ON COLUMNS, NON EMPTY { ([DIM RO].[RO City].[RO City].ALLMEMBERS * [DIM RO].[RO Code].[RO Code].ALLMEMBERS * [DIM Status].[STAT Code].[STAT Code].ALLMEMBERS * [DIM Status].[STATus Type].[STATus Type].ALLMEMBERS * [DIM SECURITYTRAININGMASTER].[PUBLISHYEAR].[PUBLISHYEAR].ALLMEMBERS * [DIM SECURITYTRAININGMASTER].[PUBLISHREPORTINGOFFICE].[PUBLISHREPORTINGOFFICE].ALLMEMBERS * [DIM SECURITYTRAININGMASTER].[TRAININGNAME].[TRAININGNAME].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( { [DIM Status].[STAT Code].&amp;[CL], [DIM Status].[STAT Code].&amp;[OP], [DIM Status].[STAT Code].[All].UNKNOWNMEMBER } ) ON COLUMNS FROM [DataView_Ifly_Dw]) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+              <ParameterDefinitions />
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
