@@ -8,7 +8,7 @@ $headerdetails= @{}
 # install-module sqlserver
 import-module SqlServer
 #Invoke-Sqlcmd  -Query "RESTORE HEADERONLY FROM DISK ='D:\Software\adventure-works-2008r2-oltp.bak';" -ServerInstance "1745DESKTOP" -Username "sa" -Password "sd12091980"
-$header=Invoke-Sqlcmd  -Query "RESTORE HEADERONLY FROM DISK ='D:\Software\adventure-works-2008r2-oltp.bak';" -ServerInstance "1745DESKTOP" -Username "sa" -Password "sd12091980"
+$header=Invoke-Sqlcmd  -Query "RESTORE HEADERONLY FROM DISK ='D:\Software\adventure-works-2008r2-oltp.bak';" -ServerInstance "192.168.86.141" -Username "sa" -Password "sd12091980"
 $max=$header | Measure-Object -Property Position -Maximum
 # pick up the max position
 $maxpos=$header | where-object {$_.Position -eq $max.Maximum}
