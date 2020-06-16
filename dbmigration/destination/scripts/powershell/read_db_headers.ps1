@@ -7,6 +7,7 @@ $headerdetails= @{}
 
 # set module sqlserver
 import-module SqlServer
+$outputFile = Split-Path $backuplocation -leaf
 
 function get-header()
 {
@@ -37,10 +38,8 @@ function get-header()
 
 function save-header()
 {
-    
-    
+
     $array=get-header $backuplocation $trackingserver
-    $array
     $insertquery = "INSERT INTO [dbo].[headerdetails]
     ([backupfilepath]
     ,[sourcedatabasename]
@@ -58,6 +57,7 @@ function save-header()
     ,[machinename]
     ,[beginslogchain]
     ,[destinationdatabasename]
+    ,filename
     ,datecreated
     )
    
@@ -78,16 +78,31 @@ function save-header()
     '$($array.MachineName)',
     '$($array.BeginsLogChain)',
     '$($array.DatabaseName)',
+    '$($outputFile)',
     getdate()
     "
-    write-host ($insertquery)
-    Invoke-Sqlcmd  -Query "$insertquery" -ServerInstance "$trackingserver" -database destination_migration  -Username "sa" -Password "sd12091980"
+    try 
+    {
+        
+        $exec=Invoke-Sqlcmd  -Query "$insertquery" -ServerInstance "$trackingserver" -database destination_migration  -Username "sa" -Password "sd12091980" -ErrorAction Stop
+    }
+    catch {
+        write-host "Error"
+        $errordetails=$_
+        process-exception $errordetails
+    }
+    
 
 }
 
 function main
 {
-    save-header
+        save-header
+}
+
+function process-exception ($exception)
+{
+    write-host $exception 
 }
 
 main

@@ -13,7 +13,7 @@ set @fullpath = @path + '\*.sqlaudit'
 
 select @lastpulldate = isnull(max(eventend),getdate()-180) from dbo.audittracker
 
-CREATE TABLE #auditdata(
+declare  @auditdata table(
 	[event_time] [datetime2](7) NOT NULL,
 	[sequence_number] [int] NOT NULL,
 	[action_id] [varchar](4) NULL,
@@ -55,9 +55,9 @@ CREATE TABLE #auditdata(
 	[connection_id] [uniqueidentifier] NULL,
 	[data_sensitivity_information] [nvarchar](4000) NULL,
 	[host_name] [nvarchar](128) NULL
-) ON [PRIMARY]
+) 
 
-insert into #auditdata
+insert into @auditdata
 SELECT	[event_time] ,
 	[sequence_number] ,
 	[action_id] ,
@@ -103,13 +103,12 @@ SELECT	[event_time] ,
  sys.fn_get_audit_file(@fullpath, DEFAULT, DEFAULT) where event_time > @lastpulldate
 
 select @rows = @@ROWCOUNT
-select @begindate=min(event_time),@enddate=max(event_time)  from #auditdata
+select @begindate=min(event_time),@enddate=max(event_time)  from @auditdata
 if(@rows>0)
 begin
 insert into audittracker
 select  @begindate, @enddate, @rows, getdate()
 end
-select * from #auditdata
+select * from @auditdata
 
-drop table #auditdata
 go
