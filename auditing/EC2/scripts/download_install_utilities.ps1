@@ -1,10 +1,13 @@
  #Run following as administrator window
 
+ Param(
+[Parameter(Mandatory=$true)][string] $script:configfile
+ )
  $script:utilitypath=''
  $script:auditdata=''
  $script:auditout=''
  $script:s3path=''
- $script:configfile='C:\aws\scripts\config.json'
+ #$script:configfile='C:\aws-sql-migration-automation\auditing\EC2\scripts\config.json'
  
  
  function read-config()
@@ -52,8 +55,14 @@
      $utilpath = $utilpath.Replace("`r`n","")
      write-host("Test path $utilpath")
      cd $utilpath
- 
-     
+    
+     if(!(Test-Path -Path 'git.exe'))
+     {
+         # download git
+         write-host('downloading Git')
+        wget https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-64-bit.exe -outfile git.exe
+     }
+
      if(!(Test-Path -Path 'sqlcmdlineutility.msi'))
      {
          # download sql libraries (required on host where SQL is not installed)

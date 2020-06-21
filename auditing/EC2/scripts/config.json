@@ -5,6 +5,9 @@
             "sqlserver":"chc-sql-1"
         },
         {
+            "type":"ec2"
+        },
+        {
             "auditdata":"c:\\aws\\auditdata"
         },
         {
@@ -15,7 +18,11 @@
         },
         {
             "utilitiespaths":"c:\\aws\\utilities"
+        },
+        {
+            "sqlscriptpath":"C:\\aws-sql-migration-automation\\auditing\\EC2\\scripts"
         }
+        
     ]
 
 }
