@@ -20,7 +20,10 @@
             "utilitiespaths":"c:\\aws\\utilities"
         },
         {
-            "sqlscriptpath":"C:\\aws-sql-migration-automation\\auditing\\EC2\\scripts"
+            "sqlscriptpath":"C:\\aws-sql-migration-automation\\auditing\\scripts\\ec2"
+        },
+        {
+            "dbname":"awsec2auditing"
         }
         
     ]
