@@ -18,8 +18,6 @@ function read-config()
    $script:auditout=$config.config.auditout| Out-String
    $script:auditname=$config.config.auditname| Out-String
 
-   write-host($script:auditname)
-
    $script:dbname=$script:dbname.Replace("`r`n","")
     $script:sqlserver=$script:sqlserver.Replace("`r`n","")
     $script:sqlscripts=$script:sqlscripts.Replace("`r`n","")
@@ -56,9 +54,8 @@ function setupauditobjects()
     $script:masteraudit = "$script:sqlscripts\masteraudit.audit.sql"
     $script:dbaudit="$script:sqlscripts\dbaudit.audit.sql"
 
-    write-host($script:auditname)
      #create masteraudit 
-     $var="AUDITPATH='$script:auditdata'", "AUDITNAME='$script:auditname'"
+     $var="AUDITPATH=$script:auditdata", "AUDITNAME=$script:auditname"
      Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:masteraudit -Database $script:dbname -Variable $var
 
      #create dbaudit
