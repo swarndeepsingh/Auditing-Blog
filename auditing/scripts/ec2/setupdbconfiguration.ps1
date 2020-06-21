@@ -18,6 +18,8 @@ function read-config()
    $script:auditout=$config.config.auditout| Out-String
    $script:auditname=$config.config.auditname| Out-String
 
+   write-host($script:auditname)
+
    $script:dbname=$script:dbname.Replace("`r`n","")
     $script:sqlserver=$script:sqlserver.Replace("`r`n","")
     $script:sqlscripts=$script:sqlscripts.Replace("`r`n","")
