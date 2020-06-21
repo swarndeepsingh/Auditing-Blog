@@ -24,6 +24,9 @@
         },
         {
             "dbname":"awsec2auditing"
+        },
+        {
+            "auditname":"chcmasteraudit"
         }
         
     ]
