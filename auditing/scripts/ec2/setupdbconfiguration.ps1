@@ -14,10 +14,16 @@ function read-config()
    $script:sqlserver=$config.config.sqlserver| Out-String
    $script:sqlscripts=$config.config.sqlscriptpath | Out-String
    $script:dbname=$config.config.dbname | Out-String
+   $script:auditdata=$config.config.auditdata| Out-String
+   $script:auditout=$config.config.auditout| Out-String
+   $script:auditname=$config.config.auditname| Out-String
 
    $script:dbname=$script:dbname.Replace("`r`n","")
     $script:sqlserver=$script:sqlserver.Replace("`r`n","")
     $script:sqlscripts=$script:sqlscripts.Replace("`r`n","")
+    $script:auditdata=$script:auditdata.Replace("`r`n","")
+    $script:auditout=$script:auditout.Replace("`r`n","")
+    $script:auditname=$script:auditname.Replace("`r`n","")
 
 
 }
@@ -43,5 +49,19 @@ function createdbobjects()
     
 }
 
+function setupauditobjects()
+{
+    $script:masteraudit = "$script:sqlscripts\masteraudit.audit.sql"
+    $script:dbaudit="$script:sqlscripts\dbaudit.audit.sql"
+
+     #create masteraudit 
+     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:masteraudit -Database $script:dbname -Variable "AUDITPATH='$script:auditdata'"
+
+     #create dbaudit
+     #Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:masteraudit -Database $script:dbname -Variable "'$script:auditdata'"
+    
+}
+
 read-config
 createdbobjects
+setupauditobjects
