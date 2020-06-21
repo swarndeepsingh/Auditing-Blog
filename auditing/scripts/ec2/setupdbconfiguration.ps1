@@ -41,7 +41,7 @@ function createdbobjects()
     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:tablecreatescriptpath -Database $script:dbname
 
     #create table
-    Invoke-Sqlcmd -ServerInstnce $servername -inputfile $tablecreatescriptpath -Database $dbname
+    Invoke-Sqlcmd -ServerInstance $servername -inputfile $tablecreatescriptpath -Database $dbname
 
     #create procedure
     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:proccreatescriptpath -Database $dbname
