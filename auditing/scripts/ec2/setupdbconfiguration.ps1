@@ -17,6 +17,7 @@ function read-config()
    $script:auditdata=$config.config.auditdata| Out-String
    $script:auditout=$config.config.auditout| Out-String
    $script:auditname=$config.config.auditname| Out-String
+   $script:dbauditname=$config.config.dbauditname| Out-String
 
    $script:dbname=$script:dbname.Replace("`r`n","")
     $script:sqlserver=$script:sqlserver.Replace("`r`n","")
