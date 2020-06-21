@@ -55,7 +55,7 @@ function setupauditobjects()
     $script:dbaudit="$script:sqlscripts\dbaudit.audit.sql"
 
      #create masteraudit 
-     $var="AUDITPATH='$script:auditdata', AUDITNAME='$script:auditname'"
+     $var="AUDITPATH='$script:auditdata'", "AUDITNAME='$script:auditname'"
      Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:masteraudit -Database $script:dbname -Variable $var
 
      #create dbaudit
