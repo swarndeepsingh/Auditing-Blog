@@ -27,7 +27,11 @@
         },
         {
             "auditname":"chcmasteraudit"
+        },
+        {
+            "dbauditname":"sampledbaudit"
         }
+
         
     ]
 

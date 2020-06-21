@@ -1,6 +1,8 @@
+/*
 :SETVAR AUDITEDDB "[chc-test]"
 :SETVAR SERVERAUDIT "chcmasteraudit"
 :SETVAR DBAUDITNAME "chcaudit"
+*/
 
 USE $(AUDITEDDB)
 GO
