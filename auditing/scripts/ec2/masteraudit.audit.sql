@@ -5,10 +5,10 @@ Execute in sqlcmd mode only
 USE [master]
 GO
 
-
-:setvar AUDITPATH --"c:\auditdata"
-:setvar AUDITNAME --"chcmasteraudit"
-
+/*
+:setvar AUDITPATH "c:\auditdata"
+:setvar AUDITNAME "chcmasteraudit"
+*/
 
 /****** Object:  Audit [testauditfile]    Script Date: 6/15/2020 2:45:48 AM ******/
 CREATE SERVER AUDIT $(AUDITNAME)
