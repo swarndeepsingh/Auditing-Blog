@@ -7,12 +7,18 @@ function getdatatocsv()
 {
     $servernamefile = $servername -replace '\\', ' '
     $filename=$outputpath+"\"+"sqlaudit_"+$servernamefile+"_" + $(((get-date).ToUniversalTime()).ToString("yyyyMMddTHHmmssfff"))
-    $header =$outputpath+ "\" + "headers.head"
     $finalfilename = $filename + ".csv"
-    bcp "exec $dbname.dbo.auditextract '$auditpath'"  queryout "$filename" -T -w -C OEM -S $servername 
+     
+    Invoke-Sqlcmd -ServerInstance $servername -Query "exec dbo.auditextract '$auditpath'" -Database $dbname | Export-csv -Path $finalfilename -Delimiter "`t" -NoTypeInformation
     
-    cmd /c copy $header+$filename $finalfilename
-    remove-item $filename
+    
+    #$header =$outputpath+ "\" + "headers.head"
+    
+    #bcp "exec $dbname.dbo.auditextract '$auditpath'"  queryout "$filename" -T -w -C ACP  -S $servername 
+    
+    #cmd /c copy $header+$filename $finalfilename
+    #remove-item $filename
 }
 
 getdatatocsv
+# -C OEM 

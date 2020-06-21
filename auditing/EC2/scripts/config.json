@@ -1,0 +1,21 @@
+{
+
+    "config":[
+        {
+            "sqlserver":"chc-sql-1"
+        },
+        {
+            "auditdata":"c:\\aws\\auditdata"
+        },
+        {
+            "auditout":"c:\\aws\\auditout"
+        },
+        {
+            "s3path":"c:\\aws\\s3"
+        },
+        {
+            "utilitiespaths":"c:\\aws\\utilities"
+        }
+    ]
+
+}
