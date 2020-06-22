@@ -1,9 +1,3 @@
-/*
-:SETVAR AUDITEDDB "[chc-test]"
-:SETVAR SERVERAUDIT "chcmasteraudit"
-:SETVAR DBAUDITNAME "chcaudit"
-*/
-
 USE $(AUDITEDDB)
 GO
 IF NOT EXISTS(select * from sys.database_audit_specifications where name='$(DBAUDITNAME)')
