@@ -6,7 +6,7 @@
 
 USE $(AUDITEDDB)
 GO
-IF NOT EXISTS(select * from sys.database_audit_specifications where name='$(DBAUDITNAME')
+IF NOT EXISTS(select * from sys.database_audit_specifications where name='$(DBAUDITNAME)')
 BEGIN
     CREATE DATABASE AUDIT SPECIFICATION $(DBAUDITNAME)
     FOR SERVER AUDIT $(SERVERAUDIT)
