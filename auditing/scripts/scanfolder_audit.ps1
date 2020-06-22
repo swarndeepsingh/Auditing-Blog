@@ -44,4 +44,5 @@ function convert_to_parquet()
 
 }
 
-scan($folder)
+read-config
+convert_to_parquet
