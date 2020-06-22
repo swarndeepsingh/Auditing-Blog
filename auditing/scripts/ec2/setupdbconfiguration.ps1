@@ -66,7 +66,7 @@ function setupauditobjects()
 
      #create db audit spec
      $var="AUDITEDDB=$script:dbname","SERVERAUDIT=$script:auditname","DBAUDITNAME=$script:dbauditname"
-     $var
+     write-host($script:dbaudit)
      Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:dbaudit -Database $script:dbname -Variable $var
     
      #create server audit spec
