@@ -1,9 +1,3 @@
-Param([Parameter(Mandatory=$true)][string]$folder
-, [Parameter(Mandatory=$true)][string]$extension
-, [Parameter(Mandatory=$true)][string]$s3localfolder
-)
-
-
 Param(
     [Parameter(Mandatory=$true)][string]$script:configfile
 )
