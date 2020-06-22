@@ -3,20 +3,42 @@ Param([Parameter(Mandatory=$true)][string]$folder
 , [Parameter(Mandatory=$true)][string]$s3localfolder
 )
 
-function scan($folder)
+
+Param(
+    [Parameter(Mandatory=$true)][string]$script:configfile
+)
+$script:auditout=''
+$script:extension='csv'
+$script:s3path=''
+
+
+function read-config()
 {
-    Get-ChildItem "$folder" -Filter *.$extension |
+    $config = Get-Content $script:configfile | out-string | ConvertFrom-Json 
+    $script:auditout=$config.config.auditout| Out-String
+    $script:s3path=$config.config.s3path| Out-String
+
+    $script:auditout=$script:auditout.Replace("`r`n","")
+    $script:s3path=$script:s3path.Replace("`r`n","")
+
+
+} 
+
+
+function convert_to_parquet()
+{
+    Get-ChildItem "$script:auditout" -Filter *.$extension |
     foreach-object {
         #call python here
         try 
         {
                 # convert to parquet
-                $status=python convert_to_parquet.py  $_.FullName $s3localfolder
-                if(-not (Test-Path -Path "$folder\processed" ) )
+                $status=python convert_to_parquet.py  $_.FullName $script:s3path=''
+                if(-not (Test-Path -Path "$script:auditout\processed" ) )
                 {
                     New-Item -Path  -ItemType Directory
                 }
-                move-item $_.FullName "$folder\processed\"
+                move-item $_.FullName "$script:auditout\processed\"
         }
         
         catch 
