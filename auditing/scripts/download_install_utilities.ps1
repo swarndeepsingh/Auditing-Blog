@@ -74,7 +74,7 @@
      {
          # download python 3.7.7
          write-host('downloading python-3.7.7.exe')
-         wget https://www.python.org/ftp/python/3.7.7/python-3.7.7.exe -outfile python-3.7.7.exe
+         wget https://www.python.org/ftp/python/3.7.7/python-3.7.7-amd64.exe -outfile python-3.7.7-amd64.exe
      }
  
  
@@ -90,7 +90,7 @@
      msiexec /i $utilpath\sqlcmdlineutility.msi /qn  IACCEPTMSSQLCMDLNUTILSLICENSETERMS=YES
  
      # install python
-     .\python-3.7.7.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+     .\python-3.7.7-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
  }
  
  
