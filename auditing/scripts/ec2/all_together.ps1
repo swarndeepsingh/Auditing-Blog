@@ -1,4 +1,9 @@
-﻿# Setup databases and audits
+﻿#download and install utilities
+cd C:\aws-sql-migration-automation\auditing\scripts
+.\download_install_utilities.ps1 C:\aws-sql-migration-automation\auditing\scripts\config.json
+
+
+# Setup databases and audits
 cd C:\aws-sql-migration-automation\auditing\scripts\ec2
 .\setupdbconfiguration.ps1 C:\aws-sql-migration-automation\auditing\scripts\config.json
 

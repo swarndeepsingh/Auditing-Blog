@@ -25,10 +25,13 @@ function read-config()
 function getdatatocsv()
 {
     $servernamefile = $script:sqlserver.Replace( '\\', '_')
-    $filename=$script:auditout+"\"+"sqlaudit_"+$servernamefile+"_" + $(((get-date).ToUniversalTime()).ToString("yyyyMMddTHHmmssfff"))
-    $finalfilename = $filename + ".csv"
-     
-    Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract '$script:auditdata'" -Database $script:dbname | Export-csv -Path $finalfilename -Delimiter "`t" -NoTypeInformation
+    for($i=1; $i -le 20; $i++)
+    {
+        $filename=$script:auditout+"\"+"sqlaudit_"+$servernamefile+"_" + $(((get-date).ToUniversalTime()).ToString("yyyyMMddTHHmmssfff"))
+        $finalfilename = $filename + ".csv"
+        Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract '$script:auditdata'" -Database $script:dbname -QueryTimeout 1800 | Export-csv -Path $finalfilename -Delimiter "`t" -NoTypeInformation 
+        sleep -Milliseconds 100
+    }
     
     
 }

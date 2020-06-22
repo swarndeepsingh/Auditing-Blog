@@ -64,7 +64,7 @@ go
 	) 
 
 	insert into @auditdata
-	SELECT	[event_time] ,
+	SELECT top 500	[event_time] ,
 		[sequence_number] ,
 		[action_id] ,
 		[succeeded] ,
@@ -106,7 +106,7 @@ go
 		[data_sensitivity_information],
 		[host_name]
 		from 
-	sys.fn_get_audit_file(@fullpath, DEFAULT, DEFAULT) where event_time > @lastpulldate
+	sys.fn_get_audit_file(@fullpath, DEFAULT, DEFAULT) where event_time > @lastpulldate order by event_time
 
 	select @rows = @@ROWCOUNT
 	select @begindate=min(event_time),@enddate=max(event_time)  from @auditdata
