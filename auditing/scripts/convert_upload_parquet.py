@@ -7,6 +7,7 @@ import sys
 try:
     inputpath = sys.argv[1]
     s3bucket = sys.argv[2]
+
 except:
     print("Python Error, cannot read arguments:")
     print(sys.exc_info())

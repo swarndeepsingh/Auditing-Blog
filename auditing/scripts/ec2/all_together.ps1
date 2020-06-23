@@ -11,7 +11,6 @@ cd C:\aws-sql-migration-automation\auditing\scripts\ec2
 pip install pandas
 pip install pyarrow
 pip install boto3
-pip install s3parq
 
 # extract data from audit binaries to CSV
 cd C:\aws-sql-migration-automation\auditing\scripts
