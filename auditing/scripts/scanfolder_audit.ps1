@@ -27,7 +27,7 @@ function convert_to_parquet()
         try 
         {
                 # convert to parquet
-                write-host "Convert to Parquet "  $_.FullNameßßß
+                write-host "Convert to Parquet "  $_.FullName
                 $status=python convert_upload_parquet.py  $_.FullName $script:s3path
                 if(-not (Test-Path -Path "$script:auditout\processed" ) )
                 {
