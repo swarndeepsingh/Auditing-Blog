@@ -27,12 +27,12 @@ function convert_to_parquet()
         try 
         {
                 # convert to parquet
-                write-host "Convert to Parquet "  $_.FullName
-                $status=python convert_to_parquet.py  $_.FullName $script:s3path
+                write-host "Convert to Parquet "  $_.FullNameßßß
+                $status=python convert_upload_parquet.py  $_.FullName $script:s3path
                 if(-not (Test-Path -Path "$script:auditout\processed" ) )
                 {
                     New-Item -Path "$script:auditout\processed"  -ItemType "directory"
-                }
+                }ß
                 write-host "Moving file "  $_.FullName  " to archived\processed folder"
                 move-item -Path $_.FullName -destination "$script:auditout\processed\"
         }
