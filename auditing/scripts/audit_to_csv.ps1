@@ -30,7 +30,7 @@ function getdatatocsv()
         $filename=$script:auditout+"\"+"sqlaudit_"+$servernamefile+"_" + $(((get-date).ToUniversalTime()).ToString("yyyyMMddTHHmmssfff"))
         $finalfilename = $filename + ".csv"
         Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract '$script:auditdata'" -Database $script:dbname -QueryTimeout 1800 | Export-csv -Path $finalfilename -Delimiter "`t" -NoTypeInformation 
-        sleep -Milliseconds 100
+        sleep -Milliseconds 250
     }
     
     

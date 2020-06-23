@@ -12,6 +12,7 @@ pip install pandas
 pip install pyarrow
 pip install boto3
 
+
 # extract data from audit binaries to CSV
 cd C:\aws-sql-migration-automation\auditing\scripts
 .\audit_to_csv.ps1 C:\aws-sql-migration-automation\auditing\scripts\config.json
