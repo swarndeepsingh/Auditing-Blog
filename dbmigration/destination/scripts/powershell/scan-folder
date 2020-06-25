@@ -1,4 +1,0 @@
-Param([Parameter(Mandatory=$true)][string]$folder)
-
-
-import-module SqlServer
