@@ -1,6 +1,0 @@
-﻿ Alter table [DBLog].[Current_Job_Status_report]
- ADD CONSTRAINT [PK_Current_Job_Status_report] PRIMARY KEY CLUSTERED 
-(
-	[Job_num] ASC
-)WITH (FILLFACTOR = 80, ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF
-, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);

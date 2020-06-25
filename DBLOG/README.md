@@ -1,1 +1,0 @@
-DBAAs is DataBase As A service initiative for SQL Servers. More details will be added in this file as project progresses.

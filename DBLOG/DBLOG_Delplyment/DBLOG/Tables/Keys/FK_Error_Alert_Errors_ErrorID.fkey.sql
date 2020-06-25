@@ -1,3 +1,0 @@
-﻿ALTER TABLE [DBLog].[Error_Alert]
-    ADD CONSTRAINT [FK_Error_Alert_Errors_ErrorID] FOREIGN KEY ([ErrorID]) REFERENCES [DBLog].[Errors] ([ErrorID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
