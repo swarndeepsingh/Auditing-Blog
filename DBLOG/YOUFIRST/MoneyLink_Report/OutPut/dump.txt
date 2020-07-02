@@ -1,1 +1,0 @@
-FYCode     ActivityNumber                               TransactionDate               

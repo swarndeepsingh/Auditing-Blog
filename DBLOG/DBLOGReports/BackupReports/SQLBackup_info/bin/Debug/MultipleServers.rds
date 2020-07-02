@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="MultipleServers">
-  <ConnectionProperties>
-    <Extension>SQL</Extension>
-    <ConnectString>Data Source=10.5.20.48;Initial Catalog=RTM</ConnectString>
-  </ConnectionProperties>
-  <DataSourceID>3cc44447-0f3d-4e32-a9fc-5052853e2bae</DataSourceID>
-</RptDataSource>

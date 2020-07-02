@@ -1,3 +1,0 @@
-﻿ALTER TABLE [DBLog].[Users_Roles]
-    ADD CONSTRAINT [FK_Users_Roles_Users] FOREIGN KEY ([UserName]) REFERENCES [DBLog].[Users] ([UserName]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
