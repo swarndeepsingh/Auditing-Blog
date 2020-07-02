@@ -11,12 +11,15 @@ function read-config()
    $script:auditdata=$config.config.auditdata| Out-String
    $script:auditout=$config.config.auditout| Out-String
    $script:dbname=$config.config.dbname | Out-String
+   $script:s3folder=$config.config.s3rawbucketname | Out-String
+   
    
     $script:sqlserver=$script:sqlserver.Replace("`r`n","")
     $script:sqlscripts=$script:sqlscripts.Replace("`r`n","")
     $script:auditdata=$script:auditdata.Replace("`r`n","")
     $script:auditout=$script:auditout.Replace("`r`n","")
     $script:dbname=$script:dbname.Replace("`r`n","")
+    $script:s3folder=$script:s3folder.Replace("`r`n","")
 
 
 }
@@ -30,7 +33,23 @@ function getdatatocsv()
         $filename=$script:auditout+"\"+"sqlaudit_"+$servernamefile+"_" + $(((get-date).ToUniversalTime()).ToString("yyyyMMddTHHmmssfff"))
         $finalfilename = $filename + ".csv"
         Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract '$script:auditdata'" -Database $script:dbname -QueryTimeout 1800 | Export-csv -Path $finalfilename -Delimiter "`t" -NoTypeInformation 
-        sleep -Milliseconds 250
+        $size=(gci -Path $finalfilename | measure -Property Length -S).sum
+        if ($size -eq 0)
+        {
+            remove-item -Path $finalfilename
+        }
+        else
+        {
+            try
+            {
+
+                Write-S3Object   -BucketName $script:s3folder -File $finalfilename
+            }
+            Catch
+            {
+                write-host "Unable to write to S3"
+            }
+        }
     }
     
     

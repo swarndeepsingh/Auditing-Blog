@@ -36,6 +36,9 @@
         },
         {
             "s3bucketname":"auditsql"
+        },
+        {
+            "s3rawbucketname":"auditsql/rawdata"
         }
 
         
