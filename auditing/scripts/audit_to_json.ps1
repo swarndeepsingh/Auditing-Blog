@@ -31,9 +31,11 @@ function getdatatocsv()
     for($i=1; $i -le 20; $i++)
     {
         $filename=$script:auditout+"\"+"sqlaudit_"+$servernamefile+"_" + $(((get-date).ToUniversalTime()).ToString("yyyyMMddTHHmmssfff"))
-        $finalfilename = $filename + ".csv"
-        Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract '$script:auditdata'" -Database $script:dbname -QueryTimeout 1800 | Export-csv -Path $finalfilename -Delimiter "`t" -NoTypeInformation 
-        upload_s3($finalfilename)
+        $finalfilename = $filename + ".log"
+        #Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract_json_1" -Database $script:dbname -QueryTimeout 1800  | Export-csv -Path $finalfilename  -Delimiter "`t" -NoTypeInformation -Force -Encoding ASCII |  Select-Object -Skip 1 | % {$_ -replace '"', ""} 
+        #Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract_json_1" -Database $script:dbname -QueryTimeout 1800  | ConvertTo-Csv -Delimiter "`t" -NoTypeInformation |  Select-Object -Skip 1  | Out-File ($finalfilename) -Force -Encoding ascii #| % {$_ -replace '"', ""}
+        Invoke-Sqlcmd -ServerInstance $script:sqlserver -Query "exec dbo.auditextract_json '$script:auditdata'" -Database $script:dbname -QueryTimeout 6000  | Select-Object * -ExcludeProperty ItemArray, Table, RowError, RowState, HasErrors | ConvertTo-Json -Compress | % {$_ -replace '},',"}`r`n"} | % {$_ -replace '\]',''} |% {$_ -replace '\[',''} | Out-File ($finalfilename)  -Force -Encoding ascii #| % {$_ -replace '"', ""} |  Select-Object -Skip 1
+        #upload_s3($finalfilename)
     }
 
 
