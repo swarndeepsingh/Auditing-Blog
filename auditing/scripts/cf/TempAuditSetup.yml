@@ -248,161 +248,67 @@ Resources:
       BucketName: !Ref S3BucketName
 
 ## Create Role
-  deliveryRole: 
-    Type: AWS::IAM::Role 
-    Properties: 
-      AssumeRolePolicyDocument: 
-        Version: 2012-10-17 
-        Statement: 
-          - Sid: '' 
-            Effect: Allow 
-            Principal: 
-              Service: firehose.amazonaws.com 
-            Action:             'sts:AssumeRole' 
-            Condition: 
-              StringEquals: 
-                'sts:ExternalId': !Ref 'AWS::AccountId' 
-        Path: "/" 
-                
-        Policies: 
-          - PolicyName: firehose_delivery_policy 
-            PolicyDocument: 
-              Version: 2012-10-17
-              Statement: 
-                - Effect: Allow 
-                  Action: 
-                    - 's3:AbortMultipartUpload' 
-                    - 's3:GetBucketLocation'
-                    - 's3:GetObject' 
-                    - 's3:ListBucket' 
-                    - 's3:ListBucketMultipartUploads' 
-                    - 's3:PutObject'
-                  Resource: 
-                    - !Join 
-                      - '' 
-                      - - 'arn:aws:s3:::' 
-                        - !Ref S3BucketAuditing 
-                    - !Join 
-                      - '' 
-                      - -  'arn:aws:s3:::' 
-                        - !Ref S3BucketAuditing - '/*' 
-                - Effect: Allow 
-                  Action: 'glue:GetTableVersions'
-                  Resource: '*' 
-                - Effect: Allow 
-                  Action: 'logs:PutLogEvents' 
-                  Resource: 
-                    - !Join 
-                      - '' 
-                      - - 'arn:aws:logs:' 
-                        - !Ref 'AWS::Region' 
-                        - ':' 
-                        - !Ref 'AWS::AccountId' 
-                        - 'log-group:/aws/kinesisfirehose/KDF-' 
-                        - !Ref GlueTable 
-                        - ':log-stream:*' 
+  deliveryRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: firehose.amazonaws.com
+            Action: 'sts.AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId': !Ref 'AWS::AccountId'
 
-#   deliveryRole:
-#     Type: AWS::IAM::Role
-#     Properties:
-#       AssumeRolePolicyDocument:
-#         Version: 2012-10-17
-#         Statement:
-#           - Sid: ''
-#             Effect: Allow
-#             Principal:
-#               Service: firehose.amazonaws.com
-#             Action: 'sts.AssumeRole'
-#             Condition:
-#               StringEquals:
-#                 'sts:ExternalId': !Ref 'AWS::AccountId'
-
-# ## Create Policy for delivery role
-#   deliveryPolicy:
-#     Type: AWS::IAM::Policy
-#     Properties:
-#       PolicyName: firehose_deliver_policy
-#       PolicyDocument:
-#         Version: 2012-10-17
-#         Statement:
-#           - Effect: Allow
-#             Action:
-#               - 's3:AbortMultipartUpload'
-#               - 's3:GetBucketLocation'
-#               - 's3:GetObject'
-#               - 's3:ListBucket'
-#               - 's3:ListBucketMultipartUploads'
-#               - 's3:PutObject'
-#             Resource:
-#               - !Join
-#                 - ''
-#                 - - 'arn:aws:s3:::'
-#                   - !Ref S3BucketAuditing
-#                   - '*'
-#         Roles:
-#           - !Ref deliveryRole
+## Create Policy for delivery role
+  deliveryPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: firehose_deliver_policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:AbortMultipartUpload'
+              - 's3:GetBucketLocation'
+              - 's3:GetObject'
+              - 's3:ListBucket'
+              - 's3:ListBucketMultipartUploads'
+              - 's3:PutObject'
+            Resource:
+              - !Join
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3BucketAuditing
+                  - '*'
+        Roles:
+          - !Ref deliveryRole
 
 
 # Create Kinesis Delivery Stream
-  deliverystream:
-    Type: AWS::KinesisFirehose::DeliveryStream 
-    Properties:
-      DeliveryStreamType: DirectPut
-      ExtendedS3DestinationConfiguration: 
-        RoleARN: !GetAtt deliveryRole.Arn 
-        BucketARN: !Join
-          - '' 
-          - - 'arn:aws:s3:::'
-            - !Ref S3BucketAuditing 
-        
-        BufferingHints: 
-          SizeInMBs: 128 
-          IntervalInSeconds: 300 
-        CompressionFormat: UNCOMPRESSED
-        EncryptionConfiguration: 
-          NoEncryptionConfig: NoEncryption 
-        CloudWatchLoggingOptions:
-          Enabled: true 
-          LogGroupName: !Join 
-            - '' 
-            - - 'KDF-' 
-              - !Ref GlueTable 
-          LogStreamName: S3Delivery 
-        S3BackupMode: Disabled 
-        DataFormatConversionConfiguration:
-          SchemaConfiguration: 
-            CatalogId: !Ref AWS::AccountId 
-            RoleARN: !GetAtt deliveryRole.Arn
-            DatabaseName: !Ref GlueDatabase 
-            TableName: !Ref GlueTable 
-            Region: !Ref AWS::Region
-            VersionId: LATEST 
-          InputFormatConfiguration: 
-            Deserializer: OpenXJsonSerDe: {}
-          OutputFormatConfiguration: 
-            Serializer: 
-              ParquetSerDe: {} 
-          Enabled: True 
-
-  # KinesisDeliveryStream:
-  #   DependsOn: 
-  #     - S3BucketAuditing
-  #     - deliveryPolicy
-  #   Type: AWS::KinesisFirehose::DeliveryStream
+  KinesisDeliveryStream:
+    DependsOn: 
+      - S3BucketAuditing
+      - deliveryPolicy
+    Type: AWS::KinesisFirehose::DeliveryStream
     
-  #   Properties:
-  #     DeliveryStreamName: audit-log-delivery-stream
-  #     DeliveryStreamType: DirectPut
-  #     ExtendedS3DestinationConfiguration:
-  #       BucketARN: !Join
-  #         - ''
-  #         - - 'arn:aws:::'
-  #           - !Ref S3BucketAuditing
-  #       BufferingHints:
-  #         IntervalInSeconds: '60'
-  #         SizeInMBs: '50'
-  #       CompressionFormat: UNCOMPRESSED
-  #       RoleARN: !GetAtt deliveryRole.Arn
+    Properties:
+      DeliveryStreamName: audit-log-delivery-stream
+      DeliveryStreamType: DirectPut
+      ExtendedS3DestinationConfiguration:
+        BucketARN: !Join
+          - ''
+          - - 'arn:aws:::'
+            - !Ref S3BucketAuditing
+        BufferingHints:
+          IntervalInSeconds: '60'
+          SizeInMBs: '50'
+        CompressionFormat: UNCOMPRESSED
+        RoleARN: !GetAtt deliveryRole.Arn
 
 ## Glue Database
     GlueDatabase:
@@ -460,7 +366,4 @@ Outputs:
   RDS:
     Description: RDS Host Name
     Value: !Ref RDSInstance
-  DeliverystreamARN:
-    Description: The ARN of the fireose delivery stream 
-    Value: !GetAtt deliverystream.Arn
 

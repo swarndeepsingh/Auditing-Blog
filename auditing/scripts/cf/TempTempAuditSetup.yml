@@ -1,0 +1,250 @@
+Parameters: 
+  EC2KeyName:
+    Description: Name of the existing EC2 KeyPair to use for SQL Server EC2
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: Must the name of existing EC2 keypair
+
+  S3BucketName:
+    Description: Enter S3 Bucket name to be created
+    Type: String
+
+
+
+Resources: 
+  PubPrivateVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.30.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-vpcSQLAudit
+
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref PubPrivateVPC
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.30.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-publicSubnetSQLAudit
+
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.30.2.0/24
+      VpcId: !Ref PubPrivateVPC
+      AvailabilityZone: us-east-1a
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-privateSubnet1SQLAudit
+
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.30.3.0/24
+      VpcId: !Ref PubPrivateVPC
+      AvailabilityZone: us-east-1b
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-privateSubnet2SQLAudit 
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-internetGatewaySQLAudit
+        - Key: Name
+          Value: public
+
+  GatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref PubPrivateVPC
+      InternetGatewayId: !Ref InternetGateway
+
+
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref PubPrivateVPC
+      Tags:
+        - Key: Network
+          Value: Public
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-routeTableSQLAudit
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  PublicRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet
+
+  NatPublicIP:
+    Type: "AWS::EC2::EIP"
+    DependsOn: PubPrivateVPC
+    Properties:
+      Domain: vpc
+
+  NatGateway:
+    Type: AWS::EC2::NatGateway
+    DependsOn:
+      - "NatPublicIP"
+    Properties: 
+      AllocationId: !GetAtt NatPublicIP.AllocationId
+      SubnetId: !Ref PublicSubnet
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-ngwSQLAudit
+
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref PubPrivateVPC
+      Tags:
+        - Key: Network
+          Value: Private
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-privateroutetableSQLAudit
+
+  PrivateRoute:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGateway
+
+  PrivateSubnet1RouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref PrivateSubnet1
+      RouteTableId: !Ref PrivateRouteTable
+
+  PrivateSubnet2RouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref PrivateSubnet2
+      RouteTableId: !Ref PrivateRouteTable
+
+## Create Database Subnet Group 
+
+  dbsubnetgroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties: 
+      DBSubnetGroupDescription: !Sub DB Subnet group for ${AWS::StackName}.
+      SubnetIds: [!Ref PrivateSubnet1, !Ref PrivateSubnet2]
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-DBSNGSQLAudit
+
+
+  PublicSecGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref PubPrivateVPC
+      GroupDescription: allow connections from specified CIDR ranges
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-PublicSecGroupSQLAudit               
+        #SecurityGroupIngress:
+        #- IpProtocol: tcp
+        #  FromPort: 80
+        #  ToPort: 80
+        #  CidrIp: 0.0.0.0/0
+        #- IpProtocol: tcp
+        #  FromPort: 3389
+        #  ToPort: 3389
+        #  CidrIp: 0.0.0.0/0 
+        #  Description: Allows RDP access 
+
+  SQLSecGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref PubPrivateVPC
+      GroupDescription: Allow connect to SQL Server
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-SQLSecGroupSQLAudit
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        SourceSecurityGroupId: !Ref PublicSecGroup
+        Description: Allows SQL Server access from app
+  ruleDbSecGroupSelfIngress:
+    Type: 'AWS::EC2::SecurityGroupIngress'
+    Properties:
+      GroupId: !Ref SQLSecGroup
+      IpProtocol: -1
+      SourceSecurityGroupId: !Ref SQLSecGroup
+
+  DbSecGroup:
+    Type: 'AWS::RDS::DBSecurityGroup'
+    Properties:
+      EC2VpcId: !Ref PubPrivateVPC
+      GroupDescription: RDS Security Group
+      DBSecurityGroupIngress:
+        EC2SecurityGroupId: !Ref SQLSecGroup
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-DBSecGroupSQLAudit
+      
+
+
+  # create Bastion host
+  bastionHost:
+        Type: AWS::EC2::Instance
+        Properties:
+          SubnetId: !Ref PublicSubnet
+          ImageId: ami-009bb3e777e9271be
+          InstanceType: t2.micro
+          KeyName: !Ref EC2KeyName
+          SecurityGroupIds: [!Ref PublicSecGroup]
+          Tags:
+            - Key: Name
+              Value: !Sub ${AWS::StackName}-bastion-hostSQLAudit
+
+# Create RDS instance
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    DependsOn: dbsubnetgroup
+    Properties:
+      AllocatedStorage: 100
+      AvailabilityZone: us-east-1a
+      BackupRetentionPeriod: 0
+      DBInstanceClass: db.t3.medium
+      DBInstanceIdentifier: sqlauditsqlserver
+      DBSecurityGroups: [!Ref DbSecGroup]
+      DBSubnetGroupName: !Ref dbsubnetgroup
+      Engine: sqlserver-ex
+      EngineVersion: '14.00.3281.6.v1'
+      MasterUsername: admin
+      MasterUserPassword: password
+      MaxAllocatedStorage: 1000
+      MultiAZ: false
+
+
+
+
+
+Outputs:
+  BastionHost:
+    Description: The Bastion Host Instance id
+    Value: !Ref bastionHost
+  RDS:
+    Description: RDS Host Name
+    Value: !Ref RDSInstance
