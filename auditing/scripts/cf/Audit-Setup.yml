@@ -247,6 +247,107 @@ Resources:
     Properties:
       BucketName: !Ref S3BucketName
 
+## Glue Database
+  GlueDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId 
+      DatabaseInput: {}
+
+## Glue Table
+  GlueTable:
+    Type: AWS::Glue::Table
+    Properties: 
+      CatalogId: !Ref AWS::AccountId
+      DatabaseName: !Ref GlueDatabase 
+      TableInput:
+
+        Name: auditgluetable
+        Owner: owner 
+        Retention: 0
+        StorageDescriptor:
+          Columns:
+            - Name: event_time
+              Type: string
+            - Name: sequence_number 
+              Type: int
+            - Name: action_id 
+              Type: string
+            - Name: succeeded 
+              Type: boolean
+            - Name: session_id 
+              Type: int 
+            - Name: server_principal_id 
+              Type: int
+            - Name: database_principal_id 
+              Type: int
+            - Name: target_server_pricipal_od 
+              Type: int
+            - Name: target_database_principal_id 
+              Type: int
+            - Name: object_id 
+              Type: int
+            - Name: class_type
+              Type: string
+            - Name: server_principal_name 
+              Type: string
+            - Name: database_principal_name 
+              Type: string
+            - Name: server_instance_name 
+              Type: string
+            - Name: database_name 
+              Type: string 
+            - Name: schema_name 
+              Type: string
+            - Name: object_name 
+              Type: string
+            - Name: statement 
+              Type: string
+            - Name: file_name 
+              Type: string
+            - Name: transaction_id 
+              Type: int
+            - Name: client_ip
+              Type: string
+            - Name: application_name 
+              Type: string
+            - Name: duration_milliseconds 
+              Type: int
+            - Name: response_rows 
+              Type: int
+            - Name: affected_rows 
+              Type: int 
+            - Name: connection_id 
+              Type: string
+            - Name: host_name 
+              Type: string
+            - Name: computername 
+              Type: string
+            - Name: dt 
+              Type: string
+          InputFormat: org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat
+          OutputFormat: org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat
+          Compressed: false
+          NumberOfBuckets: -1 
+          SerdeInfo:
+            SerializationLibrary: org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe
+          Parameters:
+            serialization.format: '1' 
+            #BucketColumns: [] 
+            #SortColumns: [] 
+            StoredAsSubDirectories: false 
+        PartitionKeys:
+          - Name: year
+            Type: string
+          - Name: month
+            Type: string
+          - Name: day            
+            Type: string
+          - Name: hour
+            Type: string 
+        TableType: EXTERNAL_TABLE
+
+
 ## Create Role
   deliveryRole: 
     Type: AWS::IAM::Role 
@@ -262,85 +363,46 @@ Resources:
             Condition: 
               StringEquals: 
                 'sts:ExternalId': !Ref 'AWS::AccountId' 
-        Path: "/" 
+      Path: "/" 
                 
-        Policies: 
-          - PolicyName: firehose_delivery_policy 
-            PolicyDocument: 
-              Version: 2012-10-17
-              Statement: 
-                - Effect: Allow 
-                  Action: 
-                    - 's3:AbortMultipartUpload' 
-                    - 's3:GetBucketLocation'
-                    - 's3:GetObject' 
-                    - 's3:ListBucket' 
-                    - 's3:ListBucketMultipartUploads' 
-                    - 's3:PutObject'
-                  Resource: 
-                    - !Join 
-                      - '' 
-                      - - 'arn:aws:s3:::' 
-                        - !Ref S3BucketAuditing 
-                    - !Join 
-                      - '' 
-                      - -  'arn:aws:s3:::' 
-                        - !Ref S3BucketAuditing - '/*' 
-                - Effect: Allow 
-                  Action: 'glue:GetTableVersions'
-                  Resource: '*' 
-                - Effect: Allow 
-                  Action: 'logs:PutLogEvents' 
-                  Resource: 
-                    - !Join 
-                      - '' 
-                      - - 'arn:aws:logs:' 
-                        - !Ref 'AWS::Region' 
-                        - ':' 
-                        - !Ref 'AWS::AccountId' 
-                        - 'log-group:/aws/kinesisfirehose/KDF-' 
-                        - !Ref GlueTable 
-                        - ':log-stream:*' 
-
-#   deliveryRole:
-#     Type: AWS::IAM::Role
-#     Properties:
-#       AssumeRolePolicyDocument:
-#         Version: 2012-10-17
-#         Statement:
-#           - Sid: ''
-#             Effect: Allow
-#             Principal:
-#               Service: firehose.amazonaws.com
-#             Action: 'sts.AssumeRole'
-#             Condition:
-#               StringEquals:
-#                 'sts:ExternalId': !Ref 'AWS::AccountId'
-
-# ## Create Policy for delivery role
-#   deliveryPolicy:
-#     Type: AWS::IAM::Policy
-#     Properties:
-#       PolicyName: firehose_deliver_policy
-#       PolicyDocument:
-#         Version: 2012-10-17
-#         Statement:
-#           - Effect: Allow
-#             Action:
-#               - 's3:AbortMultipartUpload'
-#               - 's3:GetBucketLocation'
-#               - 's3:GetObject'
-#               - 's3:ListBucket'
-#               - 's3:ListBucketMultipartUploads'
-#               - 's3:PutObject'
-#             Resource:
-#               - !Join
-#                 - ''
-#                 - - 'arn:aws:s3:::'
-#                   - !Ref S3BucketAuditing
-#                   - '*'
-#         Roles:
-#           - !Ref deliveryRole
+      Policies: 
+        - PolicyName: firehose_delivery_policy 
+          PolicyDocument: 
+            Version: 2012-10-17
+            Statement: 
+              - Effect: Allow 
+                Action: 
+                  - 's3:AbortMultipartUpload' 
+                  - 's3:GetBucketLocation'
+                  - 's3:GetObject' 
+                  - 's3:ListBucket' 
+                  - 's3:ListBucketMultipartUploads' 
+                  - 's3:PutObject'
+                Resource: 
+                  - !Join 
+                    - '' 
+                    - - 'arn:aws:s3:::' 
+                      - !Ref S3BucketAuditing 
+                  - !Join 
+                    - '' 
+                    - -  'arn:aws:s3:::' 
+                      - !Ref S3BucketAuditing 
+                      - '/*' 
+              - Effect: Allow 
+                Action: 'glue:GetTableVersions'
+                Resource: '*' 
+              - Effect: Allow 
+                Action: 'logs:PutLogEvents' 
+                Resource: 
+                  - !Join 
+                    - '' 
+                    - - 'arn:aws:logs:' 
+                      - !Ref 'AWS::Region' 
+                      - ':' 
+                      - !Ref 'AWS::AccountId' 
+                      - 'log-group:/aws/kinesisfirehose/KDF-' 
+                      - !Ref GlueTable 
+                      - ':log-stream:*' 
 
 
 # Create Kinesis Delivery Stream
@@ -356,8 +418,8 @@ Resources:
             - !Ref S3BucketAuditing 
         
         BufferingHints: 
-          SizeInMBs: 128 
-          IntervalInSeconds: 300 
+          SizeInMBs: 64 
+          IntervalInSeconds: 60 
         CompressionFormat: UNCOMPRESSED
         EncryptionConfiguration: 
           NoEncryptionConfig: NoEncryption 
@@ -378,80 +440,12 @@ Resources:
             Region: !Ref AWS::Region
             VersionId: LATEST 
           InputFormatConfiguration: 
-            Deserializer: OpenXJsonSerDe: {}
+            Deserializer: 
+              OpenXJsonSerDe: {}
           OutputFormatConfiguration: 
             Serializer: 
               ParquetSerDe: {} 
           Enabled: True 
-
-  # KinesisDeliveryStream:
-  #   DependsOn: 
-  #     - S3BucketAuditing
-  #     - deliveryPolicy
-  #   Type: AWS::KinesisFirehose::DeliveryStream
-    
-  #   Properties:
-  #     DeliveryStreamName: audit-log-delivery-stream
-  #     DeliveryStreamType: DirectPut
-  #     ExtendedS3DestinationConfiguration:
-  #       BucketARN: !Join
-  #         - ''
-  #         - - 'arn:aws:::'
-  #           - !Ref S3BucketAuditing
-  #       BufferingHints:
-  #         IntervalInSeconds: '60'
-  #         SizeInMBs: '50'
-  #       CompressionFormat: UNCOMPRESSED
-  #       RoleARN: !GetAtt deliveryRole.Arn
-
-## Glue Database
-    GlueDatabase:
-    Type: AWS::Glue::Database
-    Properties:
-      CatalogId: !Ref AWS::AccountId DatabaseInput: {}
-
-## Glue Table
-  GlueTable:
-    Type: AWS::Glue::Table
-    Properties: CatalogId: !Ref AWS::AccountId
-    DatabaseName: !Ref GlueDatabase 
-    TableInput:
-      Owner: owner 
-      Retention: 0
-      StorageDescriptor:
-        Columns:
-          - Name: pickup_latitude Type: double
-          - Name: pickup_longitude Type: double
-          - Name: dropoff_latitude Type: double
-          - Name: dropoff_longitude Type: double
-          - Name: trip_id Type: int 
-          - Name: trip_distance Type: double
-          - Name: passenger_count Type: int
-          - Name: pickup_datetime Type: timestamp
-          - Name: dropoff_datetime Type: timestamp
-          - Name: total_amount Type: double
-        InputFormat: org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat
-        OutputFormat: org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat
-        Compressed: false
-        NumberOfBuckets: -1 
-        SerdeInfo:
-        SerializationLibrary: org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe
-      Parameters:
-        serialization.format: '1' 
-        BucketColumns: [] 
-        SortColumns: [] 
-        StoredAsSubDirectories: false 
-      PartitionKeys:
-        - Name: year
-          Type: string
-        - Name: month
-          Type: string
-        - Name: day            
-          Type: string
-        - Name: hour
-          Type: string 
-      TableType: EXTERNAL_TABLE
-
 
 Outputs:
   BastionHost:
@@ -460,7 +454,18 @@ Outputs:
   RDS:
     Description: RDS Host Name
     Value: !Ref RDSInstance
-  DeliverystreamARN:
+  DeliveryStreamARN:
     Description: The ARN of the fireose delivery stream 
     Value: !GetAtt deliverystream.Arn
-
+  GlueDatabase:
+    Description: The GlueDatabaseName
+    Value: !Ref GlueDatabase
+  GlueTable:
+    Description: Glue table name
+    Value: !Ref GlueTable
+  Roles:
+    Description: Role for Firehose delivery
+    Value: !Ref deliveryRole
+  S3BucketName:
+    Description: S3 Bucket for parquet files
+    Value: !Ref S3BucketAuditing
