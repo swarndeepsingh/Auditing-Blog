@@ -7,7 +7,7 @@ begin
 	drop procedure auditextract
 end 
 go
-	create proc [dbo].[auditextract] @path varchar(500)
+	CREATE proc [dbo].[auditextract] @path varchar(500)
 	as
 	declare @begindate datetime
 	, @enddate datetime2(7)
@@ -88,4 +88,5 @@ go
 	select  @begindate, @enddate, @rows, getdate()
 	end
 	select * from @auditdata
-go
+
+GO

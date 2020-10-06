@@ -211,7 +211,7 @@ Resources:
         Properties:
           SubnetId: !Ref PublicSubnet
           ImageId: ami-009bb3e777e9271be
-          InstanceType: t2.micro
+          InstanceType: t2.xlarge
           KeyName: !Ref EC2KeyName
           SecurityGroupIds: [!Ref PublicSecGroup]
           Tags:
