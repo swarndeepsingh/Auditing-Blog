@@ -11,7 +11,6 @@ function read-config()
    $script:auditdata=$config.config.auditdata| Out-String
    $script:auditout=$config.config.auditout| Out-String
    $script:dbname=$config.config.dbname | Out-String
-   $script:s3folder=$config.config.s3rawbucketname | Out-String
    
    
     $script:sqlserver=$script:sqlserver.Replace("`r`n","")
@@ -19,7 +18,6 @@ function read-config()
     $script:auditdata=$script:auditdata.Replace("`r`n","")
     $script:auditout=$script:auditout.Replace("`r`n","")
     $script:dbname=$script:dbname.Replace("`r`n","")
-    $script:s3folder=$script:s3folder.Replace("`r`n","")
 
 
 }
@@ -42,7 +40,7 @@ function getdatatocsv()
     
     
 }
-
+<# 
 function upload_s3($path)
 {
     $size=(gci -Path $path | measure -Property Length -S).sum
@@ -62,7 +60,7 @@ function upload_s3($path)
             write-host "Unable to write to S3"
         }
     }
-}
+} #>
 read-config
 getdatatocsv
 # -C OEM 

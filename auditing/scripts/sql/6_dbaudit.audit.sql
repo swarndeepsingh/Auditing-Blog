@@ -1,4 +1,9 @@
-USE $(AUDITEDDB)
+/*:setvar DBAUDITNAME "chcDBaudit"
+:setvar SERVERAUDIT "chcmasteraudit"
+:setvar AUDITEDDB "DBToAudit"
+*/
+
+USE awsec2auditing
 GO
 IF NOT EXISTS(select * from sys.database_audit_specifications where name='$(DBAUDITNAME)')
 BEGIN

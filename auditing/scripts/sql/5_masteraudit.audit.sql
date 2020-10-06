@@ -1,14 +1,16 @@
 /*
 Execute in sqlcmd mode only
 */
-
-USE [master]
-GO
-
 /*
 :setvar AUDITPATH "c:\auditdata"
 :setvar AUDITNAME "chcmasteraudit"
 */
+USE [master]
+GO
+
+
+
+
 
 /****** Object:  Audit [testauditfile]    Script Date: 6/15/2020 2:45:48 AM ******/
 if not exists(select * from sys.server_audits where name='$(AUDITNAME)')

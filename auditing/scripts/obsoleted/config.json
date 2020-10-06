@@ -14,6 +14,12 @@
             "auditout":"c:\\aws\\auditout"
         },
         {
+            "s3path":"c:\\aws\\s3"
+        },
+        {
+            "utilitiespaths":"c:\\aws\\utilities"
+        },
+        {
             "sqlscriptpath":"C:\\aws-sql-migration-automation\\auditing\\scripts\\sql"
         },
         {
@@ -27,6 +33,12 @@
         },
         {
             "serverspecaudit":"sampleserveraudit"
+        },
+        {
+            "s3bucketname":"auditsql"
+        },
+        {
+            "s3rawbucketname":"auditsql/rawdata"
         }
 
         

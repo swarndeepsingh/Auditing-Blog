@@ -1,3 +1,7 @@
+/*
+:setvar serverauditspec "serverauditing"
+:setvar SERVERAUDIT "serverauditname"
+*/
 USE [master]
 GO
 if not exists(select * from sys.server_audit_specifications where name='$(serverauditspec)')
