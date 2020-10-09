@@ -1,7 +1,6 @@
 
 -- usage exec auditextract 'C:\auditdata\'
-use awsec2auditing
-GO
+
 if exists(select 1 from sys.objects where name ='auditextract')
 begin
 	drop procedure auditextract

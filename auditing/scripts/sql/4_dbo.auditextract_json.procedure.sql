@@ -1,5 +1,4 @@
-use awsec2auditing
-GO
+
 if exists(select 1 from sys.objects where name ='auditextract_json')
 begin
 	drop procedure auditextract_json

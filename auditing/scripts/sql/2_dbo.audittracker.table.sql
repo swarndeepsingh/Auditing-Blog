@@ -1,5 +1,3 @@
-USE [awsec2auditing]
-GO
 
 if not exists (select 1 from sys.objects where name ='audittracker')
 begin

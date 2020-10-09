@@ -16,14 +16,14 @@ GO
  */
 
 use master;
+set nocount on
 
 declare @script varchar(max)
 set @script =''
 select @script = @script + ''
 
 
-use master;
-set nocount on
+
  
 declare @batchscript varchar(max)
 set @batchscript = ''
