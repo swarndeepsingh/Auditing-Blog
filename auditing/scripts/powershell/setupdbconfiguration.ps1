@@ -2,7 +2,7 @@ Param(
     [Parameter(Mandatory=$true)][string]$script:configfile
 )
 
-Import-Module SQLServer
+#Import-Module SQLServer
 
 $script:sqlserver=''
 $script:sqlscripts=''
@@ -32,26 +32,30 @@ function read-config()
     $script:dbauditname=$script:dbauditname.Replace("`r`n","")
     $script:serverspecaudit=$script:serverspecaudit.Replace("`r`n","")
 
+    #$script:dbname='master'
+
 
 }
 function createdbobjects()
 {
+   
+    
     
 
     $script:tablecreatescriptpath = "$script:sqlscripts\2_dbo.audittracker.table.sql"
     $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json.procedure.sql"
 
     #create db 
-    Invoke-Sqlcmd -ServerInstance $servername -query "if not exists(select 1 from sys.databases where name='$script:dbname') create database $script:dbname" -Database master
+    Invoke-Sqlcmd -ServerInstance $sqlserver -query "if not exists(select 1 from sys.databases where name='$script:dbname') create database $script:dbname" -Database master
     
+    write-host "Creating Tracking Table"
     #create table
-    Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:tablecreatescriptpath -Database $script:dbname
+    Invoke-Sqlcmd -ServerInstance $sqlserver -inputfile $script:tablecreatescriptpath -Database $script:dbname
 
-    #create table
-    #Invoke-Sqlcmd -ServerInstance $servername -inputfile $tablecreatescriptpath -Database $dbname
 
     #create procedure
-    Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:proccreatescriptpath -Database $dbname
+    write-host "Creating Procedure"
+    Invoke-Sqlcmd -ServerInstance $sqlserver -inputfile $script:proccreatescriptpath -Database $dbname
     
     
 }
@@ -62,18 +66,36 @@ function setupauditobjects()
     $script:dbaudit="$script:sqlscripts\6_dbaudit.audit.sql"
     $script:srvauditspec="$script:sqlscripts\7_serverauditspecs.audit.sql"
 
-     #create master audit 
-     $var="AUDITPATH=$script:auditdata", "AUDITNAME=$script:auditname"
-     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:masteraudit -Database $script:dbname -Variable $var
-
-     #create db audit spec
-     $var="AUDITEDDB=$script:dbname","SERVERAUDIT=$script:auditname","DBAUDITNAME=$script:dbauditname"
-     write-host($script:dbaudit)
-     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:dbaudit -Database $script:dbname -Variable $var
+    #create master audit 
+    $var="AUDITPATH=$script:auditdata", "AUDITNAME=$script:auditname"
+    Invoke-Sqlcmd -ServerInstance $sqlserver -inputfile $script:masteraudit -Database $script:dbname -Variable $var
     
-     #create server audit spec
-     $var="SERVERAUDIT=$script:auditname","serverauditspec=$script:serverspecaudit"
-     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:srvauditspec -Database $script:dbname -Variable $var
+    try
+    {
+        write-host "Creating Server Audit"
+        #create server audit spec
+        $var="SERVERAUDIT=$script:auditname","serverauditspec=$script:serverspecaudit"
+        Invoke-Sqlcmd -ServerInstance $sqlserver -inputfile $script:srvauditspec -Database $script:dbname -Variable $var -ErrorAction Stop
+    }
+    catch
+    {
+        write_host $_
+    }
+
+
+    try
+    {
+        #create db audit spec
+        $var="AUDITEDDB=$script:dbname","SERVERAUDIT=$script:auditname","DBAUDITNAME=$script:dbauditname"
+        Invoke-Sqlcmd -ServerInstance $sqlserver -inputfile $script:dbaudit -Database $script:dbname -Variable $var -ErrorAction Stop
+
+    }
+    catch
+    {
+        write-host $_
+    }
+
+    
 }
 
 read-config

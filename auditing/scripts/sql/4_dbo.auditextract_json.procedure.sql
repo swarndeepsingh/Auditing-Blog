@@ -1,12 +1,13 @@
-
-if exists(select 1 from sys.objects where name ='auditextract_json')
-begin
-	drop procedure auditextract_json
-end 
-go
+if exists(SELECT type_desc, type
+        FROM sys.procedures WITH(NOLOCK)
+        WHERE NAME = 'auditextract_json'
+            AND type = 'P')
+	DROP PROCEDURE dbo.[auditextract_json]
+GO
 
 create proc [dbo].[auditextract_json] @path varchar(500)
 	as
+	begin
 	declare @begindate datetime
 	, @enddate datetime2(7)
 	, @rows bigint
@@ -42,9 +43,7 @@ create proc [dbo].[auditextract_json] @path varchar(500)
 		[application_name] [nvarchar](128) NULL,
 		[duration_milliseconds] [bigint] NOT NULL,
 		[response_rows] [bigint] NOT NULL,
-		[affected_rows] [bigint] NOT NULL,
-		[connection_id] [uniqueidentifier] NULL,
-		[host_name] [nvarchar](128) NULL
+		[affected_rows] [bigint] NOT NULL
 	) 
 
 	insert into @auditdata
@@ -72,9 +71,7 @@ create proc [dbo].[auditextract_json] @path varchar(500)
 		[application_name] ,
 		[duration_milliseconds],
 		[response_rows],
-		[affected_rows],
-		[connection_id],
-		[host_name]
+		[affected_rows]
 		from 
 	sys.fn_get_audit_file(@fullpath, DEFAULT, DEFAULT) where event_time > @lastpulldate order by event_time
 
@@ -86,5 +83,6 @@ create proc [dbo].[auditextract_json] @path varchar(500)
 	select  @begindate, @enddate, @rows, getdate()
 	end
 	select * from @auditdata
-
-GO
+ 
+ end
+ go

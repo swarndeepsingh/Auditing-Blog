@@ -2,7 +2,7 @@ Param(
     [Parameter(Mandatory=$true)][string]$script:configfile
 )
 
-Import-Module sqlserver
+#Import-Module sqlserver
 
 function read-config()
 {

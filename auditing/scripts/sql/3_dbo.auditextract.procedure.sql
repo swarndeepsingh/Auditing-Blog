@@ -1,11 +1,7 @@
 
 -- usage exec auditextract 'C:\auditdata\'
 
-if exists(select 1 from sys.objects where name ='auditextract')
-begin
-	drop procedure auditextract
-end 
-go
+
 	CREATE proc [dbo].[auditextract] @path varchar(500)
 	as
 	declare @begindate datetime
@@ -87,5 +83,6 @@ go
 	select  @begindate, @enddate, @rows, getdate()
 	end
 	select * from @auditdata
+	Go
 
-GO
+

@@ -2,19 +2,22 @@
 
     "config":[
         {
-            "sqlserver":"chc-sql-1"
+            "sqlserver":"EC2AMAZ-8F47GSP"
         },
         {
             "type":"ec2"
+        },
+	{
+            "dbname":"awsaudit"
         },
         {
             "auditdata":"c:\\aws\\auditdata"
         },
         {
-            "auditout":"c:\\aws\\auditout"
+            "auditout":"C:\\LogSource\\copy"
         },
         {
-            "sqlscriptpath":"C:\\aws-sql-migration-automation\\auditing\\scripts\\sql"
+            "sqlscriptpath":"C:\\aws\\aws-sql-migration-automation\\auditing\\scripts\\sql"
         },
         {
             "auditname":"chcmasteraudit"
