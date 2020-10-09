@@ -17,16 +17,13 @@
             "sqlscriptpath":"C:\\aws-sql-migration-automation\\auditing\\scripts\\sql"
         },
         {
-            "dbname":"awsec2auditing"
-        },
-        {
             "auditname":"chcmasteraudit"
         },
         {
-            "dbauditname":"sampledbaudit"
+            "dbauditname":"chcdatabaseaudit"
         },
         {
-            "serverspecaudit":"sampleserveraudit"
+            "serverspecaudit":"chcserveraudit"
         }
 
         
