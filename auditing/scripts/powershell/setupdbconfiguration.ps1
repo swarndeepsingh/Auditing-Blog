@@ -2,6 +2,8 @@ Param(
     [Parameter(Mandatory=$true)][string]$script:configfile
 )
 
+Import-Module SQLServer
+
 $script:sqlserver=''
 $script:sqlscripts=''
 $script:dbname=''
@@ -36,17 +38,17 @@ function createdbobjects()
 {
     
 
-    $script:tablecreatescriptpath = "$script:sqlscripts\dbo.audittracker.table.sql"
-    $script:proccreatescriptpath="$script:sqlscripts\dbo.auditextract.procedure.sql"
+    $script:tablecreatescriptpath = "$script:sqlscripts\2_dbo.audittracker.table.sql"
+    $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json.procedure.sql"
 
     #create db 
-    Invoke-Sqlcmd -ServerInstance $servername -query "if not exists(select 1 from sys.databases where name='$script:dbname') create database awsec2auditing" -Database master
+    Invoke-Sqlcmd -ServerInstance $servername -query "if not exists(select 1 from sys.databases where name='$script:dbname') create database $script:dbname" -Database master
     
     #create table
     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:tablecreatescriptpath -Database $script:dbname
 
     #create table
-    Invoke-Sqlcmd -ServerInstance $servername -inputfile $tablecreatescriptpath -Database $dbname
+    #Invoke-Sqlcmd -ServerInstance $servername -inputfile $tablecreatescriptpath -Database $dbname
 
     #create procedure
     Invoke-Sqlcmd -ServerInstance $servername -inputfile $script:proccreatescriptpath -Database $dbname
@@ -56,9 +58,9 @@ function createdbobjects()
 
 function setupauditobjects()
 {
-    $script:masteraudit = "$script:sqlscripts\masteraudit.audit.sql"
-    $script:dbaudit="$script:sqlscripts\dbaudit.audit.sql"
-    $script:srvauditspec="$script:sqlscripts\serverauditspecs.audit.sql"
+    $script:masteraudit = "$script:sqlscripts\5_masteraudit.audit.sql"
+    $script:dbaudit="$script:sqlscripts\6_dbaudit.audit.sql"
+    $script:srvauditspec="$script:sqlscripts\7_serverauditspecs.audit.sql"
 
      #create master audit 
      $var="AUDITPATH=$script:auditdata", "AUDITNAME=$script:auditname"
