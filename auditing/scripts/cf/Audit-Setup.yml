@@ -214,6 +214,7 @@ Resources:
           InstanceType: t2.xlarge
           KeyName: !Ref EC2KeyName
           SecurityGroupIds: [!Ref PublicSecGroup]
+          IamInstanceProfile: !Ref EC2Instanceprofile
           Tags:
             - Key: Name
               Value: !Sub ${AWS::StackName}-bastion-hostSQLAudit
@@ -238,7 +239,19 @@ Resources:
       MultiAZ: false
 
 
+# Cloud Watch Log Group
+  CWLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Join ['-', ['KDF',!Ref GlueTable]]
+      RetentionInDays: 90
 
+# Cloud Watch Log Stream
+  CWLogStream:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogGroupName: !Ref CWLogGroup
+      LogStreamName: 'S3Delivery'
 
 # Create S3 Bucket
 
@@ -246,6 +259,11 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref S3BucketName
+
+  S3BucketAthena:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Join ['-', [!Ref S3BucketName, 'athenaworkgroup']]
 
 ## Glue Database
   GlueDatabase:
@@ -347,6 +365,86 @@ Resources:
             Type: string 
         TableType: EXTERNAL_TABLE
 
+## Crawler
+  AuditingCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: 'SQLAuditing-Crawler'
+      Role: !GetAtt CrawlerGlueRole.Arn
+      DatabaseName: !Ref GlueDatabase
+      Targets:
+        S3Targets:
+          - Path: !Ref S3BucketAuditing
+      SchemaChangePolicy:
+        UpdateBehavior: 'UPDATE_IN_DATABASE'
+        DeleteBehavior: 'LOG'
+      Schedule:
+        ScheduleExpression: 'cron(0/10 * * * ? *)'
+
+## WorkGroup Query
+  AthenaWorkGroup:
+    Type: AWS::Athena::WorkGroup
+    Properties:
+      Name: MyCustomWorkGroup
+      Description: My WorkGroup
+      State: ENABLED
+      Tags:
+        - Key: "key1"
+          Value: "value1"
+        - Key: "key2"
+          Value: "value2"
+      WorkGroupConfiguration:
+        BytesScannedCutoffPerQuery: 200000000
+        EnforceWorkGroupConfiguration: false
+        PublishCloudWatchMetricsEnabled: false
+        RequesterPaysEnabled: true
+        ResultConfiguration:
+          OutputLocation: !Join ['', ['s3://',!Ref S3BucketAuditing]]
+
+
+## EC2 Instance Profile
+  EC2Instanceprofile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        -
+          Ref: EC2Role
+
+## EC2 Role
+  EC2Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+      Policies:
+        - PolicyName: EC2_delivery_policy 
+          PolicyDocument: 
+            Version: 2012-10-17
+            Statement: 
+              - Effect: Allow
+                Action:
+                  - firehose:PutRecord
+                  - firehose:PutRecordBatch
+                Resource:
+                  - !Join
+                    - ''
+                    - - 'arn:aws:firehose:'
+                      - !Ref 'AWS::Region'
+                      - ':'
+                      - !Ref 'AWS::AccountId'
+                      - ':deliverystream/'
+                      - !Ref deliverystream
+
 
 ## Create Role
   deliveryRole: 
@@ -400,10 +498,35 @@ Resources:
                       - !Ref 'AWS::Region' 
                       - ':' 
                       - !Ref 'AWS::AccountId' 
-                      - 'log-group:/aws/kinesisfirehose/KDF-' 
+                      - 'log-group:KDF-' 
                       - !Ref GlueTable 
                       - ':log-stream:*' 
 
+## Crawler Glue Role
+  CrawlerGlueRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "glue.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        -
+          PolicyName: "root"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "*"
+                Resource: "*"
 
 # Create Kinesis Delivery Stream
   deliverystream:
