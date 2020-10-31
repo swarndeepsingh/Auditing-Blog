@@ -52,7 +52,7 @@ function createdbobjects()
     $script:tablecreatescriptpath = "$script:sqlscripts\2_dbo.audittracker.table.sql"
     if ($script:type -eq "RDS")
     {
-        $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json_rds.procedure.sql"
+        $script:proccreatescriptpath="$script:sqlscripts\8_dbo.auditextract_json_rds.procedure.sql"
     }
     else {
         $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json.procedure.sql"
