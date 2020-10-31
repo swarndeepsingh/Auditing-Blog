@@ -21,6 +21,7 @@ function read-config()
    $script:auditname=$config.config.auditname| Out-String
    $script:dbauditname=$config.config.dbauditname| Out-String
    $script:serverspecaudit=$config.config.serverspecaudit| Out-String
+   $script:type=$config.config.type | Out-String
    
 
    $script:dbname=$script:dbname.Replace("`r`n","")
@@ -31,6 +32,12 @@ function read-config()
     $script:auditname=$script:auditname.Replace("`r`n","")
     $script:dbauditname=$script:dbauditname.Replace("`r`n","")
     $script:serverspecaudit=$script:serverspecaudit.Replace("`r`n","")
+    $script:type= $script:type.Replace("`r`n","")
+
+    if ($script:type -eq "RDS")
+    {
+        $script:auditdata="D:\rdsdbdata\SQLAudit"
+    }
 
     #$script:dbname='master'
 
@@ -43,7 +50,13 @@ function createdbobjects()
     
 
     $script:tablecreatescriptpath = "$script:sqlscripts\2_dbo.audittracker.table.sql"
-    $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json.procedure.sql"
+    if ($script:type -eq "RDS")
+    {
+        $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json_rds.procedure.sql"
+    }
+    else {
+        $script:proccreatescriptpath="$script:sqlscripts\4_dbo.auditextract_json.procedure.sql"
+    }
 
     #create db 
     Invoke-Sqlcmd -ServerInstance $sqlserver -query "if not exists(select 1 from sys.databases where name='$script:dbname') create database $script:dbname" -Database master

@@ -1,13 +1,14 @@
 {
 
     "config":[
+        
         {
             "sqlserver":"EC2AMAZ-8F47GSP"
         },
         {
             "type":"ec2"
         },
-	{
+	    {
             "dbname":"awsaudit"
         },
         {

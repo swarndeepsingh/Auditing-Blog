@@ -20,6 +20,10 @@ function read-config()
     $script:auditout=$script:auditout.Replace("`r`n","")
     $script:dbname=$script:dbname.Replace("`r`n","")
 
+    if ($script:type -eq "RDS")
+    {
+        $script:auditdata="D:\rdsdbdata\SQLAudit"
+    }
 
 }
 
