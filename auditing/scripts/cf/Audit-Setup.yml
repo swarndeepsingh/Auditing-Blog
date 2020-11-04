@@ -219,6 +219,78 @@ Resources:
             - Key: Name
               Value: !Sub ${AWS::StackName}-bastion-hostSQLAudit
 
+
+
+
+# Option groups
+  OptionGroupsRoles:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "rds.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        -
+          PolicyName: "rds-s3-access-auditing"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "s3:ListAllMyBuckets"
+                Resource: "*"
+              -
+                Effect: "Allow"
+                Action:
+                  - s3:GetBucketLocation
+                  - s3:GetBucketACL
+                  - s3:ListBucket
+                Resource:
+                  - !Join 
+                    - '' 
+                    - - 'arn:aws:s3:::' 
+                      - !Ref S3BucketAuditingRetention 
+              -
+                Effect: "Allow"
+                Action:
+                  - s3:ListMultipartUploadParts
+                  - s3:AbortMultipartUpload
+                  - s3:PutObject
+                Resource:
+                  - !Join 
+                    - '' 
+                    - -  'arn:aws:s3:::' 
+                      - !Ref S3BucketAuditingRetention 
+                      - '/*' 
+                
+
+  myOptionGroup:
+    Type: 'AWS::RDS::OptionGroup'
+    Properties:
+      EngineName: sqlserver-ex
+      MajorEngineVersion: '14.00'
+      OptionGroupDescription: 'SQL Server auditing'
+      OptionConfigurations:
+        - OptionName: SQLSERVER_AUDIT
+          OptionSettings:
+            - Name: 'IAM_ROLE_ARN'
+              Value: !GetAtt OptionGroupsRoles.Arn
+            - Name: 'ENABLE_COMPRESSION'
+              Value: 'false'
+            - Name: 'S3_BUCKET_ARN'
+              Value: !Sub "arn:aws:s3:::${S3BucketAuditingRetention}"
+              
+
+    
+
 # Create RDS instance
   RDSInstance:
     Type: AWS::RDS::DBInstance
@@ -237,6 +309,8 @@ Resources:
       MasterUserPassword: password
       MaxAllocatedStorage: 1000
       MultiAZ: false
+      OptionGroupName: !Ref myOptionGroup
+
 
 
 # Cloud Watch Log Group
@@ -264,6 +338,11 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Join ['-', [!Ref S3BucketName, 'athenaworkgroup']]
+
+  S3BucketAuditingRetention:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Join ['-', [!Ref S3BucketName, 'retention']]
 
 ## Glue Database
   GlueDatabase:
@@ -569,6 +648,8 @@ Resources:
             Serializer: 
               ParquetSerDe: {} 
           Enabled: True 
+
+            
 
 Outputs:
   BastionHost:
